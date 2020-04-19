@@ -1,3 +1,4 @@
+#!/uae/bin/python3
 import logging
 import sys
 logging.basicConfig(stream=sys.stderr)
