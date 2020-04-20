@@ -1,3 +1,4 @@
+#!/uae/bin/python3
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
