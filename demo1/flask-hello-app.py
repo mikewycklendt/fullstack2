@@ -15,7 +15,12 @@ db.create_all()
 
 @app.route('/')
 def index():
-    return 'Hello '
+    person = Person.query.first()
+    return 'Hello ' + person.name
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(host='0.0.0.0', port=80, debug=True)
+=======
+    app.run(host="0.0.0.0", port=80, debug=True)
+>>>>>>> 327d77d878b087d8db712f576904d880e7252b9b
