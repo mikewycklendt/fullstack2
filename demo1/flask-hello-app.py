@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:F00tBall@3.134.26.61:5432/example'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:postgres@3.134.26.61:5432/example'
 db = SQLAlchemy(app)
 
 class Person(db.Model):
@@ -16,7 +15,8 @@ db.create_all()
 
 @app.route('/')
 def index():
-    return 'Hello '
+    person = Person.query.first()
+    return 'Hello ' + person.name
 
 if __name__ == '__main__':
-    app.run(host="3.134.26.61", port=80, debug=True)
+    app.run(host="0.0.0.0", port=80, debug=True)
