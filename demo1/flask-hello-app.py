@@ -13,6 +13,10 @@ class Person(db.Model):
 
 db.create_all()
 
+matt = Person(name='Matt')
+db.session.add(matt)
+db.session.commit()
+
 @app.route('/')
 def index():
     person = Person.query.first()
