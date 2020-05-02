@@ -23,10 +23,11 @@
 		<script>
 			document.getElementById('form').onsubmit = function(e) {
 				e.preventDefault();
+				userInput = document.getElementById('description').value
 				fetch('/todos/create', {
 					method: 'POST',
 					body: json.stringify({
-						'description': document.getElementById('description').value
+						'description': userInput
 					}),
 					headers: {
 						'Content-Type': 'application/json'
