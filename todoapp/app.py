@@ -19,22 +19,9 @@ class Todo(db.Model):
 
 db.create_all()
 
-todo1 = Todo(description='Todo Thing 1')
-db.session.add(todo1)
-
-todo2 = Todo(description='Todo Thing 2')
-db.session.add(todo2)
-
-todo3 = Todo(description='Todo Thing 3')
-db.session.add(todo3)
-
-todo4 = Todo(description='Todo Thing 4')
-db.session.add(todo4)
-
-todo5 = Todo(description='Todo Thing 5')
-db.session.add(todo5)
-
-db.session.commit()
+#todo1 = Todo(description='Todo Thing 1')
+#db.session.add(todo1)
+#db.session.commit()
 
 
 
@@ -57,7 +44,7 @@ def create_todo():
 	except:
 		error=True
 		db.session.rollback()
-		print(sys.exec_info())
+		print(sys.exc_info())
 	finally:
 		db.session.close()
 	if error:
