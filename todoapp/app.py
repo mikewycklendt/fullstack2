@@ -36,8 +36,8 @@ def create_todo():
 #	description = request.form.get('description', '')
 #	return render_template('index.html')
 	try:
-		description = request.get_json()['description']
-		#description = request.body.description
+		#description = request.get_json()['description']
+		description = request.body.description
 		todo = Todo(description=description)
 		body['description'] = todo.description
 		db.session.add(todo)
