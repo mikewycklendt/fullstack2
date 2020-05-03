@@ -27,7 +27,7 @@
 				fetch('/todos/create', {
 					method: 'POST',
 					headers: {'Content-Type': 'application/json'},
-					body: {'description': userInput}
+					body: JSON.stringify({'description': userInput})
 				})
 				.then(function(response) {
 					return response.json();

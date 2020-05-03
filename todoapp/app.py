@@ -29,15 +29,14 @@ db.create_all()
 def index():
 	return render_template('index.html', data=Todo.query.all())
 
-@app.route('/todos/create', methods=['POST'])
+@app.route('/todos/create', methods=['GET','POST'])
 def create_todo():
 	error = False
 	body = {}
 #	description = request.form.get('description', '')
 #	return render_template('index.html')
 	try:
-		description = request.get_json()
-		print(description)
+		description = request.get_json()['description']
 		todo = Todo(description=description)
 		#body['description'] = todo.description
 		db.session.add(todo)
