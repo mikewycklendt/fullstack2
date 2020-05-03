@@ -26,10 +26,8 @@
 				userInput = document.getElementById('description').value
 				fetch('/todos/create', {
 					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
-					body: JSON.stringify({'description': userInput})
+					headers: {'Content-Type': 'application/json'},
+					body: {'description': userInput}
 				})
 				.then(function(response) {
 					return response.json();
