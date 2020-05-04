@@ -29,10 +29,10 @@
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({'description': userInput})
 				})
-				.then(function(response) {
+				.then(response => {
 					return response.json();
 				})
-				.then(function(jsonResponse) { 
+				.then(jsonResponse => { 
 					console.log(jsonResponse);
 					let liItem = document.createElement('LI');
 					liItem.innerHTML = jsonResponse['description'];
