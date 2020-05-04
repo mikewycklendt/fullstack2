@@ -21,9 +21,10 @@
 		</ul>
 
 		<script>
-			let userInput = document.getElementById('description').value
+			
 			document.getElementById('form').onsubmit = async(e) =>{
 				e.preventDefault();
+				let userInput = document.getElementById('description').value
 				response = fetch('/todos/create', {
 					method: 'POST',
 					headers: {'Content-Type': 'application/json'},
