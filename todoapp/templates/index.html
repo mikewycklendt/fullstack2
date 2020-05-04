@@ -21,30 +21,38 @@
 		</ul>
 
 		<script>
-			document.getElementById('form').onsubmit = function(e) {
+			let userInput = document.getElementById('description').value
+			document.getElementById('form').onsubmit = async(e) =>{
 				e.preventDefault();
-				userInput = document.getElementById('description').value
 				response = fetch('/todos/create', {
 					method: 'POST',
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({'description': userInput})
-				})
-				// .then(response => {
-				//	let item = response.json();
-				//	console.log(item)
-				//	return response.json();
-				//})
-				//.then(jsonResponse => { 
-				//	console.log(jsonResponse);
-				.then(function(userInput) {
+				});
+				try {
+					console.log(userInput);
 					let liItem = document.createElement('LI');
 					liItem.innerHTML = userInput;
 					document.getElementById('todos').appendChild(liItem);
 					document.getElementById('error').className = 'hidden';
-				})
-				.catch(function() {
+				}catch(error) {
+					console.log('error', error);
 					document.getElementById('error').className = '';
-				})
+				}
+				//.then(response => {
+				//	let item = response.json();
+				//	return response.json();
+				//})
+				//.then(jsonResponse => { 
+				//	console.log(jsonResponse);
+				//	let liItem = document.createElement('LI');
+				//	liItem.innerHTML = jsonResponse['description'];
+				//	document.getElementById('todos').appendChild(liItem);
+				//	document.getElementById('error').className = 'hidden';
+				//})
+				//.catch(function() {
+				//	document.getElementById('error').className = '';
+				//})
 			}
 		</script>
 	</body>
