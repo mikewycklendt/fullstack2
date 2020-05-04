@@ -30,6 +30,8 @@
 					body: JSON.stringify({'description': userInput})
 				})
 				.then(response => {
+					let item = response.json();
+					console.log(item)
 					return response.json();
 				})
 				.then(jsonResponse => { 
