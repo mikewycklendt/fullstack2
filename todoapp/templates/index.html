@@ -9,7 +9,7 @@
 	</head>
 
 	<body>
-		<form method="POST" action="/todos/create">
+		<form method="POST" action="/todos/create" id="form">
 			<input type="text" id="description" name="description" />
 			<input type="submit" value="Create" />
 		</form>
@@ -24,7 +24,7 @@
 			document.getElementById('form').onsubmit = function(e) {
 				e.preventDefault();
 				userInput = document.getElementById('description').value
-				fetch('/todos/create', {
+				response = fetch('/todos/create', {
 					method: 'POST',
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({'description': userInput})
@@ -32,7 +32,7 @@
 				.then(function(response) {
 					return response.json();
 				})
-				.then(function(jsonResponse){
+				.then(jsonResponse => { 
 					console.log(jsonResponse);
 					let liItem = document.createElement('LI');
 					liItem.innerHTML = jsonResponse('description');
