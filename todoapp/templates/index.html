@@ -35,7 +35,7 @@
 				.then(function(jsonResponse) { 
 					console.log(jsonResponse);
 					let liItem = document.createElement('LI');
-					liItem.innerHTML = jsonResponse('description');
+					liItem.innerHTML = jsonResponse['description'];
 					document.getElementById('todos').appendChild(liItem);
 					document.getElementById('error').className = 'hidden';
 				})
