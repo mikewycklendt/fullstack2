@@ -29,7 +29,7 @@ db.create_all()
 def index():
 	return render_template('index.html', data=Todo.query.all())
 
-@app.route('/todos/create', methods=['GET','POST'])
+@app.route('/todos/create', methods=['POST'])
 def create_todo():
 	error = False
 	body = {}
