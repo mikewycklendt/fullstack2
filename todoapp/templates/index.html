@@ -29,15 +29,16 @@
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({'description': userInput})
 				})
-				.then(response => {
-					let item = response.json();
-					console.log(item)
-					return response.json();
-				})
-				.then(jsonResponse => { 
-					console.log(jsonResponse);
+				// .then(response => {
+				//	let item = response.json();
+				//	console.log(item)
+				//	return response.json();
+				//})
+				//.then(jsonResponse => { 
+				//	console.log(jsonResponse);
+				.then(function(userInput) {
 					let liItem = document.createElement('LI');
-					liItem.innerHTML = jsonResponse['description'];
+					liItem.innerHTML = userInput;
 					document.getElementById('todos').appendChild(liItem);
 					document.getElementById('error').className = 'hidden';
 				})
