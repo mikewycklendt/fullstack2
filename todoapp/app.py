@@ -3,11 +3,14 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, request, redirect, url_for, jsonify, abort
 import sys
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:postgres@3.134.26.61:5432/todoapp'
 db = SQLAlchemy(app)
 #db = SQLAlchemy(app, session_options={"expire_on_commit": False})
+
+migrate = Migrate(app, db)
 
 class Todo(db.Model):
 	__tablename__ = 'todos'
