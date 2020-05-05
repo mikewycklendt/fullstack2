@@ -20,7 +20,7 @@ class Todo(db.Model):
 #	def __repr__(self):
 #		return f'<Todo {self.id} {self.description}>'	
 
-db.create_all()
+#db.create_all()
 
 #todo1 = Todo(description='Todo Thing 1')
 #db.session.add(todo1)
