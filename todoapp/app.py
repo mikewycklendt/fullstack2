@@ -23,19 +23,9 @@ class Todo(db.Model):
 
 #db.create_all()
 
-todo1 = Todo(description='Todo Thing 1')
-db.session.add(todo1)
-db.session.commit()
-
-todo2 = Todo(description='Todo Thing 2')
-db.session.add(todo1)
-db.session.commit()
-
-todo3 = Todo(description='Todo Thing 3')
-db.session.add(todo1)
-db.session.commit()
-
-
+#todo1 = Todo(description='Todo Thing 1')
+#db.session.add(todo1)
+#db.session.commit()
 
 @app.route('/')
 def index():
