@@ -67,25 +67,28 @@
 	</div>	
 		<script>
 			const checkboxes = document.querySelectorAll('.check-completed');
-			for (let i = 0; i < checkboxes.length; i++) {
-				const checkbox = checkboxes[i];
-				checkbox.onchange = function(e) {
-					console.log('event',e );
-					let newCompleted = e.target.checked;
-					let todoId = e.target.dataset('id');
-					response = fetch('/todos/' + todoId + '/set-completed', {
-						method: 'POST',
-						headers: {'Content-Type': 'application/json'},
-						body: JSON.stringify({'completed': newCompleted})
-					})
-					.then(function() {
-						document.getElementById('error').className = 'hidden';
-					})
-					.catch(function() {
-						document.getElementById('error').className = '';
-					})
-				}
-			}
+      for (let i = 0; i < checkboxes.length; i++) {
+        const checkbox = checkboxes[i];
+        checkbox.onchange = function(e) {
+          const newCompleted = e.target.checked;
+          const todoId = e.target.dataset['id'];
+          fetch('/todos/' + todoId + '/set-completed', {
+            method: 'POST',
+            body: JSON.stringify({
+              'completed': newCompleted
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(function() {
+            document.getElementById('error').className = 'hidden';
+          })
+          .catch(function() {
+            document.getElementById('error').className = '';
+          })
+        }
+      }
 			document.getElementById('form').onsubmit = async(e) =>{
 				e.preventDefault();
 				let userInput = document.getElementById('description').value
