@@ -73,7 +73,7 @@
 					console.log('event',e );
 					let newCompleted = e.target.checked;
 					let todoId = e.target.dataset('id');
-					fetch('/todos/get-completed', {
+					fetch('/todos/' + todoId + '/set-completed', {
 						method: 'POST',
 						headers: {'Content-Type': 'application/json'},
 						body: JSON.stringify({'completed': newCompleted})
@@ -89,7 +89,7 @@
 			document.getElementById('form').onsubmit = async(e) =>{
 				e.preventDefault();
 				let userInput = document.getElementById('description').value
-				response = fetch('/todos/' + todoId + 'create', {
+				response = fetch('/todos/create', {
 					method: 'POST',
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({'description': userInput})
