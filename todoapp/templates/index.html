@@ -73,7 +73,7 @@
 					console.log('event',e );
 					let newCompleted = e.target.checked;
 					let todoId = e.target.dataset('id');
-					fetch('/todos/' + todoId + '/set-completed', {
+					response = fetch('/todos/' + todoId + '/set-completed', {
 						method: 'POST',
 						headers: {'Content-Type': 'application/json'},
 						body: JSON.stringify({'completed': newCompleted})
