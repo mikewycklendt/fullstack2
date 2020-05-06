@@ -68,7 +68,7 @@
 		<script>
 			const checkboxes = document.querySelectorAll('.check-completed');
 			for (let i = 0; i = checkboxes.length; i++) {
-				let checkbox = checkboxes[i];
+				const checkbox = checkboxes[i];
 				checkbox.onchange = function(e) {
 					console.log('event',e );
 					let newCompleted = e.target.checked;
