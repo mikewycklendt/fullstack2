@@ -59,7 +59,7 @@ def create_todo():
 
 #	return redirect(url_for('index'))
 
-@app.route('/todos/<todo_id>/set-completed', methoda=['POST'])
+@app.route('/todos/<todo_id>/set-completed', methods=['POST'])
 def set_completed_todo(todo_id):
 	try:
 		completed = request.get_json()['completed']
@@ -73,7 +73,7 @@ def set_completed_todo(todo_id):
 		db.session.close
 	return redirect(url_for('index'))
 
-@app.route('/todos/<todo_id>', methoda=['DELETE'])
+@app.route('/todos/<todo_id>', methods=['DELETE'])
 def delete_todo(todo_id):
 	try:
 		Todo.query.filter_by(id=todo_id).delete()
