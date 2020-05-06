@@ -58,7 +58,7 @@
 		<div id="error" class="hidden">Something went wrong</div>
 		<ul id="todos">
 			{% for d in data %}
-				<li><input class="check-completed" data-id="{{ d.id }}" type="checkbox" {% if d.completed %} checked {% endif %} /> 
+				<li><input id="check-completed" data-id="{{ d.id }}" type="checkbox" {% if d.completed %} checked {% endif %} /> 
 					{{d.description}}
 					<button class="delete-button" data-id="{{ d.id }}" >&cross;</button>
 				</li>
@@ -67,7 +67,7 @@
 	</div>	
 		<script>
 			const checkboxes = document.querySelectorAll('.check-completed');
-			for (let i = 0; i = checkboxes.length; i++) {
+			for (let i = 0; i < checkboxes.length; i++) {
 				const checkbox = checkboxes[i];
 				checkbox.onchange = function(e) {
 					console.log('event',e );
