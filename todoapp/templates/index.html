@@ -58,7 +58,7 @@
 		<div id="error" class="hidden">Something went wrong</div>
 		<ul id="todos">
 			{% for d in data %}
-				<li><input id="check-completed" data-id="{{ d.id }}" type="checkbox" {% if d.completed %} checked {% endif %} /> 
+				<li><input class="check-completed" data-id="{{ d.id }}" type="checkbox" {% if d.completed %} checked {% endif %} /> 
 					{{d.description}}
 					<button class="delete-button" data-id="{{ d.id }}" >&cross;</button>
 				</li>
@@ -70,6 +70,7 @@
       for (let i = 0; i < checkboxes.length; i++) {
         const checkbox = checkboxes[i];
         checkbox.onchange = function(e) {
+		  console.log('click')
           const newCompleted = e.target.checked;
           const todoId = e.target.dataset['id'];
           fetch('/todos/' + todoId + '/set-completed', {
