@@ -108,20 +108,20 @@
 					console.log('error', error);
 					document.getElementById('error').className = '';
 				}
-				let deleteBtns = document.querySelectorAll('.delete-button');
-					for (let i = 0; i < deleteBtns.length; i++) {
-						let btn = deleteBtns[i];
-						btn.onclick = function(e) {
-							let todoId = e.target.dataset['id'];
-							fetch('/todos/' + todoId, {
-								method: 'DELETE'
-							})
-							.then(function() {
-								const item = e.target.parentElement;
-								item.remove();
-							})
-						}
-					}
+	  const deleteBtns = document.querySelectorAll('.delete-button');
+      for (let i = 0; i < deleteBtns.length; i++) {
+        const btn = deleteBtns[i];
+        btn.onclick = function(e) {
+          const todoId = e.target.dataset['id'];
+          fetch('/todos/' + todoId, {
+            method: 'DELETE'
+          })
+          .then(function() {
+            const item = e.target.parentElement;
+            item.remove();
+          })
+        }
+      }
 				//.then(response => {
 				//	let item = response.json();
 				//	return response.json();
