@@ -115,7 +115,11 @@
 							let todoId = e.target.dataset['id'];
 							fetch('/todos/' + todoId, {
 								method: 'DELETE'
-							});
+							})
+							.then(function() {
+								const item = e.target.parentElement;
+								item.remove();
+							})
 						}
 					}
 				//.then(response => {
