@@ -111,7 +111,7 @@
 	  const deleteBtns = document.querySelectorAll('.delete-button');
       for (let i = 0; i < deleteBtns.length; i++) {
         const btn = deleteBtns[i];
-        btn.onclick = function(e) {
+        btn.addEventListener('click', function(e) {
 		  console.log('click')
           const todoId = e.target.dataset['id'];
           fetch('/todos/' + todoId, {
@@ -121,7 +121,7 @@
             const item = e.target.parentElement;
             item.remove();
           })
-        }
+        })
       }
 				//.then(response => {
 				//	let item = response.json();
