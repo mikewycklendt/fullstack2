@@ -112,6 +112,7 @@
       for (let i = 0; i < deleteBtns.length; i++) {
         const btn = deleteBtns[i];
         btn.onclick = function(e) {
+		  console.log('click')
           const todoId = e.target.dataset['id'];
           fetch('/todos/' + todoId, {
             method: 'DELETE'
