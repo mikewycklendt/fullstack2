@@ -67,21 +67,7 @@
 	</div>	
 		<script>
 
-const deletes = document.querySelectorAll('.xbox');
-      for (let i = 0; i < deletes.length; i++) {
-        const btn = deletes[i];
-        btn.onclick = function(e) {
-		  console.log('click')
-          const todoId = e.target.dataset['id'];
-          fetch('/todos/' + todoId, {
-            method: 'DELETE'
-          })
-          .then(function() {
-            const item = e.target.parentElement;
-            item.remove();
-          })
-        }
-      }
+
 
 			const checkboxes = document.querySelectorAll('.check-completed');
       for (let i = 0; i < checkboxes.length; i++) {
@@ -151,6 +137,21 @@ const deletes = document.querySelectorAll('.xbox');
           console.error('Error occurred');
           document.getElementById('error').className = '';
         })
+      }
+	  const deletes = document.querySelectorAll('.xbox');
+      for (let i = 0; i < deletes.length; i++) {
+        const btn = deletes[i];
+        btn.onclick = function(e) {
+		  console.log('click')
+          const todoId = e.target.dataset['id'];
+          fetch('/todos/' + todoId, {
+            method: 'DELETE'
+          })
+          .then(function() {
+            const item = e.target.parentElement;
+            item.remove();
+          })
+        }
       }
 			//document.getElementById('form').onsubmit = async(e) =>{
 			//	e.preventDefault();
