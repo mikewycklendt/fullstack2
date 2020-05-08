@@ -122,7 +122,9 @@ const deletes = document.querySelectorAll('.xbox');
             'Content-Type': 'application/json',
           }
         })
-        .then(response => response.json())
+        .then(response => {
+			return response.json()
+		})
         .then(jsonResponse => {
           const li = document.createElement('li');
           const checkbox = document.createElement('input');
