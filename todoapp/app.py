@@ -43,6 +43,9 @@ def create_todo():
 		#body['description'] = todo.description
 		db.session.add(todo)
 		db.session.commit()
+		body['id'] = todo.id
+		body['completed'] = todo.completed
+		body['description'] = todo.description
 	except:
 		error=True
 		db.session.rollback()
