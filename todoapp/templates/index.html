@@ -68,8 +68,8 @@
 		<script>
 
 
-
-			const checkboxes = document.querySelectorAll('.check-completed');
+	updateItem = function() {
+	  const checkboxes = document.querySelectorAll('.check-completed');
       for (let i = 0; i < checkboxes.length; i++) {
         const checkbox = checkboxes[i];
         checkbox.onchange = function(e) {
@@ -93,6 +93,7 @@
           })
         }
       }
+	};
 
 	  const descInput = document.getElementById('description');
       document.getElementById('form').onsubmit = function(e) {
@@ -132,12 +133,17 @@
 
           document.getElementById('todos').appendChild(li);
           document.getElementById('error').className = 'hidden';
+
+		  updateItem()
+		  deleteItem()
         })
         .catch(function() {
           console.error('Error occurred');
           document.getElementById('error').className = '';
         })
       }
+	
+	deleteItem = function() {
 	  const deletes = document.querySelectorAll('.xbox');
       for (let i = 0; i < deletes.length; i++) {
         const btn = deletes[i];
@@ -153,6 +159,10 @@
           })
         }
       }
+	};
+
+	deleteItem();
+	updateItem();
 			//document.getElementById('form').onsubmit = async(e) =>{
 			//	e.preventDefault();
 			//	let userInput = document.getElementById('description').value
