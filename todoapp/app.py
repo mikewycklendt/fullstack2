@@ -25,6 +25,21 @@ class TodoList(db.Model):
 	name = db.Column(db.String(), nullable=False)
 	todos = db.relationship('Todo', backref='list', lazy=True)
 
+#order_items = db.Table('order_items',
+#    db.Column('order_id', db.Integer, db.ForeignKey('order.id'), primary_key=True),
+#    db.Column('product_id', db.Integer, db.ForeignKey('product.id'), primary_key=True)
+#)
+
+#class Order(db.Model):
+#  id = db.Column(db.Integer, primary_key=True)
+#  status = db.Column(db.String(), nullable=False)
+#  products = db.relationship('Product', secondary=order_items,
+#      backref=db.backref('orders', lazy=True))
+#
+#class Product(db.Model):
+#  id = db.Column(db.Integer, primary_key=True)
+#  name = db.Column(db.String(), nullable=False)
+
 # flask db migrate
 # flask db upgrade
 
@@ -37,9 +52,19 @@ class TodoList(db.Model):
 #db.session.add(todo1)
 #db.session.commit()
 
+# list = TodoList(name='Urgent')
+# todo = Todo(description="This really important Thing")
+# todo2 = Todo(description="Urgent Todo 2")
+# todo3 = Todo(description="Urgent Todo 3")
+# todo.list = list
+# todo2.list = list
+# todo3.list = list
+# db.session.add(list)
+# db.session.commit()
+
 @app.route('/lists/<list_id>')
 def get_list_todos(list_id):
-	return render_template('index.html', data=Todo.query.filter_by(list_id=list_id).order_by('id').all())
+	return render_template('index.html', active_list=TodoList.query.get(list_id), todos=Todo.query.filter_by(list_id=list_id).order_by('id').all(), lists=TodoList.query.all())
 
 @app.route('/')
 def index():
