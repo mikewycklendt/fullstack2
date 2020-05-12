@@ -71,9 +71,9 @@
 		
 		<ul id="todos">
 			{% for todo in todos %}
-				<li><input class="check-completed" data-id="{{ d.id }}" type="checkbox" {% if todo.completed %} checked {% endif %} /> 
+				<li><input class="check-completed" data-id="{{ todo.id }}" type="checkbox" {% if todo.completed %} checked {% endif %} /> 
 					{{todo.description}}
-					<button class="xbox" data-id="{{ d.id }}" >&cross;</button>
+					<button class="xbox" data-id="{{ todo.id }}" >&cross;</button>
 				</li>
 			{% endfor %}
 		</ul>
