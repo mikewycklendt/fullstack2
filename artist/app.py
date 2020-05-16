@@ -13,6 +13,7 @@ from logging import Formatter, FileHandler
 from flask_wtf import Form
 from forms import *
 from flask_migrate import Migrate
+import config
 #----------------------------------------------------------------------------#
 # App Config.
 #----------------------------------------------------------------------------#
@@ -509,4 +510,5 @@ if not app.debug:
     app.logger.info('errors')
 
 if __name__ == '__main__':
+    app.secret_key = config.SECRET_KEY
     app.run(host='0.0.0.0', port=80, debug=True)
