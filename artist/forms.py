@@ -116,7 +116,7 @@ class VenueForm(Form):
     seeking_talent = SelectField(
         'seeking', validators=[DataRequired()],
         choices=[
-            ('Yes', True)
+            ('Yes', True),
             ('No', False)
         ]
     )
