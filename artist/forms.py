@@ -123,6 +123,10 @@ class VenueForm(Form):
     seeking_description = StringField(
         'seeking_description'
     )
+    facebook_link = StringField(
+        # TODO implement enum restriction
+        'facebook_link', validators=[URL()]
+    )
 
 class ArtistForm(Form):
     name = StringField(
