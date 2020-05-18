@@ -258,10 +258,10 @@ def create_venue_submission():
     db.session.close()
   if error:
     flash('An error occured. Venue ' + name + ' could not be listed.')
-    return render_template()
+    return redirect(url_for('index'))
   else:
     flash('Venue ' + request.form['name'] + ' was successfully listed!')
-    return render_template('pages/home.html')
+    return redirect(url_for('index'))
   # TODO: insert form data as a new Venue record in the db, instead
   # TODO: modify data to be the data object returned from db insertion
 
