@@ -6,31 +6,31 @@
       <h3 class="form-heading">List a new venue <a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
       <div class="form-group">
         <label for="name">Name</label>
-        {{ form.name(class_ = 'form-control', name='name', id=name, autofocus = true) }}
+        {{ form.name(class_ = 'form-control', id=name, autofocus = true) }}
       </div>
       <div class="form-group">
           <label>City & State</label>
           <div class="form-inline">
             <div class="form-group">
-              {{ form.city(class_ = 'form-control', placeholder='City', name='city', id=city, autofocus = true) }}
+              {{ form.city(class_ = 'form-control', placeholder='City', id=city, autofocus = true) }}
             </div>
             <div class="form-group">
-              {{ form.state(class_ = 'form-control', placeholder='State', name='state', id=form.state.id, autofocus = true) }}
+              {{ form.state(class_ = 'form-control', placeholder='State', id=form.state.id, autofocus = true) }}
             </div>
           </div>
       </div>=
       <div class="form-group">
         <label for="address">Address</label>
-        {{ form.address(class_ = 'form-control', name='address', id=address, autofocus = true) }}
+        {{ form.address(class_ = 'form-control', id=address, autofocus = true) }}
       </div>
       <div class="form-group">
           <label for="phone">Phone</label>
-          {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', name='phone', id=phone, autofocus = true) }}
+          {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', id=phone, autofocus = true) }}
         </div>
       <div class="form-group">
         <label for="genres">Genres</label>
         <small>Ctrl+Click to select multiple</small>
-        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', name='genres', id=form.genres.id, autofocus = true) }}
+        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.genres.id, autofocus = true) }}
       </div>
       <div class="form-group">
         <label for="seeking_talent">Is Venue currently seeking talent?</label>
@@ -38,19 +38,19 @@
       </div>
       <div class="form-group">
         <label for="seeking_description">What kind of music are you looking for?</label>
-        {{ form.facebook_link(class_ = 'form-control', name='seeking_description', id=seeking_description.id, autofocus = true) }}
+        {{ form.facebook_link(class_ = 'form-control', id=seeking_description.id, autofocus = true) }}
       </div>
       <div class="form-group">
           <label for="facebook_link">Facebook Link</label>
-          {{ form.facebook_link(class_ = 'form-control', placeholder='http://', name='facebook_link', id=facebook_link, autofocus = true) }}
+          {{ form.facebook_link(class_ = 'form-control', placeholder='http://', id=facebook_link, autofocus = true) }}
         </div>
       <div class="form-group">
           <label for="image_link">Image of Venue</label>
-          {{ form.image_link(class_ = 'form-control', name='image_link', id=image_link, autofocus = true) }}
+          {{ form.image_link(class_ = 'form-control', id=image_link, autofocus = true) }}
         </div>
       <div class="form-group">
           <label for="website">Website</label>
-          {{ form.website(class_ = 'form-control', name='website', id=website, placeholder='http://', autofocus = true) }}
+          {{ form.website(class_ = 'form-control', id=website, placeholder='http://', autofocus = true) }}
         </div>
       <input type="submit" value="Create Venue" class="btn btn-primary btn-lg btn-block">
     </form>
