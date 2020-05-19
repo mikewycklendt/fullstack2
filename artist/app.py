@@ -241,18 +241,18 @@ def create_venue_form():
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
   error = False
-  form = VenueForm(request.form)
-  name = request.form.get('name')
-  city = request.form.get('city')
-  state = request.form.get('state')
-  address = request.form.get('address')
-  phone = request.form.get('phone')
-  image = request.form.get('image_link')
-  facebook = request.form.get('facebook_link')
-  seeking = request.form.get('seeking_talent')
-  seekingDesc = request.form.get('seeking_description')
-  genres = request.form.get('genres')
-  website = request.form.get('website')
+  #form = VenueForm(request.form)
+  name = request.form['name']
+  city = request.form['city']
+  state = request.form['state']
+  address = request.form['address']
+  phone = request.form['phone']
+  image = request.form['image_link']
+  facebook = request.form['facebook_link']
+  seeking = request.form['seeking_talent']
+  seekingDesc = request.form['seeking_description']
+  genres = request.form['genres']
+  website = request.form['website']
   try:
     venue = Venue(name=name,
                   city=city,
