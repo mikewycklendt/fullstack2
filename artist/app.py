@@ -241,42 +241,43 @@ def create_venue_form():
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
   error = False
-  try:
-    name = request.form.get('name')
-    city = request.form.get('city')
-    state = request.form.get('state')
-    address = request.form.get('address')
-    phone = request.form.get('phone')
-    image = request.form.get('')
-    facebook = request.form.get('facebook_link')
-    seeking = request.form.get('seeking_talent')
-    seekingDesc = request.form.get('seeking_description')
-    genres = request.form.get('genres')
-    website = request.form.get('website')
-    venue = Venue(name=name,
-                  city=city,
-                  state=state,
-                  address=address,
-                  phone=phone,
-                  image_link=image,
-                  facebook_link=facebook,
-                  seekin_talent=seeking,
-                  seeking_description=seekingDesc,
-                  genres=genres,
-                  website=website)
-    db.session.add(venue)
-    db.session.commit()
-  except:
-    error = True
-    db.session.rollback()
-  finally:
-    db.session.close()
-  if error:
-    flash('An error occured. Venue ' + name + ' could not be listed.')
-    return redirect(url_for('index'))
-  else:
-    flash('Venue ' + request.form['name'] + ' was successfully listed!')
-    return redirect(url_for('index'))
+  if request.method == 'POST:'
+    try:
+      name = request.form.get('name')
+      city = request.form.get('city')
+      state = request.form.get('state')
+      address = request.form.get('address')
+      phone = request.form.get('phone')
+      image = request.form.get('')
+      facebook = request.form.get('facebook_link')
+      seeking = request.form.get('seeking_talent')
+      seekingDesc = request.form.get('seeking_description')
+      genres = request.form.get('genres')
+      website = request.form.get('website')
+      venue = Venue(name=name,
+                    city=city,
+                    state=state,
+                    address=address,
+                    phone=phone,
+                    image_link=image,
+                    facebook_link=facebook,
+                    seeking_talent=seeking,
+                    seeking_description=seekingDesc,
+                    genres=genres,
+                    website=website)
+      db.session.add(venue)
+      db.session.commit()
+    except:
+      error = True
+      db.session.rollback()
+    finally:
+      db.session.close()
+    if error:
+      flash('An error occured. Venue ' + name + ' could not be listed.')
+      return redirect(url_for('index'))
+    else:
+      flash('Venue ' + request.form['name'] + ' was successfully listed!')
+      return redirect(url_for('index'))
   # TODO: insert form data as a new Venue record in the db, instead
   # TODO: modify data to be the data object returned from db insertion
 
