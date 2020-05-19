@@ -248,7 +248,7 @@ def create_venue_submission():
       state = request.form.get('state')
       address = request.form.get('address')
       phone = request.form.get('phone')
-      image = request.form.get('')
+      image = request.form.get('image_link')
       facebook = request.form.get('facebook_link')
       seeking = request.form.get('seeking_talent')
       seekingDesc = request.form.get('seeking_description')
@@ -566,5 +566,6 @@ if not app.debug:
     app.logger.info('errors')
 
 if __name__ == '__main__':
-    app.secret_key = config.SECRET_KEY
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.secret_key = config.SECRET_KEY\
+    app.debug = True
+    app.run(host='0.0.0.0', port=80)
