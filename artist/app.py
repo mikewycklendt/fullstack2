@@ -241,6 +241,7 @@ def create_venue_form():
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
   error = False
+  form = VenueForm(request.form)
   name = request.form.get('name')
   city = request.form.get('city')
   state = request.form.get('state')
