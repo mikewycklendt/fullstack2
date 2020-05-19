@@ -56,48 +56,45 @@
   </div>
 
   <script>
-      const nameInput = document.getElementById('name');
-      const cityInput = document.getElementById('city');
-      const addressInput = document.getElementById('address');
-      const phoneInput = document.getElementById('phone');
-      const facebookInput = document.getElementById('facebook_link');
-      const stateInput = document.getElementById('state');
-      const genreInput = document.getElementById('genres');
-      const seekingDescInput = document.getElementById('seeking_description');
-      const imageInput = document.getElementById('image_link');
-      const seekingInput = document.getElementById('seeking_talent');
-      document.getElementById('form').onsubmit = function(e) {
-        e.preventDefault();
-        const name = nameInput.value;
-        const city = cityInput.value;
-        const address = addressInput.value;
-        const phone = phoneInput.value;
-        const facebook = facebookInput.value;
-        const state = stateInput.value;
-        const genres = genreInput.value;
-        const seekingDesc = seekingDescInput.value;
-        const image = imageInput.value;
-        const seeking = seekingInput.value;
-        fetch('/venues/create', {
-          method: 'POST',
-          body: JSON.stringify({
-            'name': name, 
-            'city': city, 
-            'address': address, 
-            'phone':phone, 
-            'facebook': facebook, 
-            'state': state, 
-            'genres': genres,
-            'seekingDesc': seekingDesc,
-            'image': image,
-            'seeking': seeking
-          }),
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        })
-
-
-
+//      const nameInput = document.getElementById('name');
+//      const cityInput = document.getElementById('city');
+//      const addressInput = document.getElementById('address');
+//      const phoneInput = document.getElementById('phone');
+//      const facebookInput = document.getElementById('facebook_link');
+//      const stateInput = document.getElementById('state');
+//      const genreInput = document.getElementById('genres');
+//      const seekingDescInput = document.getElementById('seeking_description');
+//      const imageInput = document.getElementById('image_link');
+//      const seekingInput = document.getElementById('seeking_talent');
+//      document.getElementById('form').onsubmit = function(e) {
+//        e.preventDefault();
+//        const name = nameInput.value;
+//        const city = cityInput.value;
+//        const address = addressInput.value;
+//        const phone = phoneInput.value;
+//        const facebook = facebookInput.value;
+//        const state = stateInput.value;
+//        const genres = genreInput.value;
+//        const seekingDesc = seekingDescInput.value;
+//        const image = imageInput.value;
+//        const seeking = seekingInput.value;
+//        fetch('/venues/create', {
+//          method: 'POST',
+//          body: JSON.stringify({
+//            'name': name, 
+//            'city': city, 
+//            'address': address, 
+//            'phone':phone, 
+//            'facebook': facebook, 
+//            'state': state, 
+//            'genres': genres,
+//            'seekingDesc': seekingDesc,
+//            'image': image,
+//            'seeking': seeking
+//          }),
+//          headers: {
+//            'Content-Type': 'application/json',
+//          }
+//        })
   </script>
 {% endblock %}
