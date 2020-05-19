@@ -241,18 +241,18 @@ def create_venue_form():
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
   error = False
-  body = {}
   try:
-    name = request.get_json()['name']
-    city = request.get_json()['city']
-    address = request.get_json()['address']
-    phone = request.get_json()['phone']
-    facebook = request.get_json()['facebook']
-    state = request.get_json()['state']
-    genres = request.get_json()['genres']
-    seekingDesc = request.get_json()['seekingDessc']
-    seeking = request.get_json()['seeking']
-    image = request.get_json()['image']
+    name = request.form.get('name')
+    city = request.form.get('city')
+    state = request.form.get('state')
+    address = request.form.get('address')
+    phone = request.form.get('phone')
+    image = request.form.get('')
+    facebook = request.form.get('facebook_link')
+    seeking = request.form.get('seeking_talent')
+    seekingDesc = request.form.get('seeking_description')
+    genres = request.form.get('genres')
+    website = request.form.get('website')
     venue = Venue(name=name,
                   city=city,
                   state=state,
@@ -260,9 +260,10 @@ def create_venue_submission():
                   phone=phone,
                   image_link=image,
                   facebook_link=facebook,
-                  seeking=seeking,
-                  seekingDesc=seekingDesc,
-                  genres=genres)
+                  seekin_talent=seeking,
+                  seeking_description=seekingDesc,
+                  genres=genres,
+                  website=website)
     db.session.add(venue)
     db.session.commit()
   except:
