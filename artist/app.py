@@ -239,7 +239,7 @@ def create_venue_form():
   return render_template('forms/new_venue.html', form=form)
 
 @app.route('/venues/create', methods=['POST'])
-def create_venue_submission()
+def create_venue_submission():
   #form = VenueForm(request.form)
   name = request.form['name']
   city = request.form['city']
