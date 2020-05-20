@@ -114,7 +114,7 @@ class VenueForm(Form):
         ]
     )
     seeking_talent = SelectField(
-        'seeking_talent', validators=[DataRequired()], coerce=bool,
+        'seeking_talent', validators=[InputRequired()], coerce=bool,
         choices=[
             (True, 'Yes'),
             (False, 'No'),
