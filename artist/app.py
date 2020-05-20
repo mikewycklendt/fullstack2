@@ -253,6 +253,17 @@ def create_venue_submission():
   seekingDesc = request.form['seeking_description']
   genres = request.form['genres']
   website = request.form['website']
+  print(name)
+  print(city)
+  print(venueState)
+  print(address)
+  print(phone)
+  print(image)
+  print(facebook)
+  print(seeking)
+  print(seekingDesc)
+  print(genres)
+  print(website)
   try:
     newEntry = Venue(name=name, city=city, state=venueState, address=address, phone=phone, image_link=image, facebook_link=facebook, seeking_talent=seeking, seeking_description=seekingDesc, genres=genres, website=website)
     db.session.add(newEntry)
