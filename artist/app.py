@@ -42,7 +42,7 @@ class Venue(db.Model):
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
-    seeking_talent = db.Column(db.String(), nullable=False, default='False')
+    seeking_talent = db.Column(db.String())
     seeking_description = db.Column(db.String())
     genres = db.Column(db.String())
     website = db.Column(db.String())
