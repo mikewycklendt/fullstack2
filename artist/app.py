@@ -244,7 +244,7 @@ def create_venue_submission():
   #form = VenueForm(request.form)
   name = request.form['name']
   city = request.form['city']
-  state = request.form['state']
+  venueState = request.form['state']
   address = request.form['address']
   phone = request.form['phone']
   image = request.form['image_link']
@@ -254,18 +254,8 @@ def create_venue_submission():
   genres = request.form['genres']
   website = request.form['website']
   try:
-    venue = Venue(name=name,
-                  city=city,
-                  state=state,
-                  address=address,
-                  phone=phone,
-                  image_link=image,
-                  facebook_link=facebook,
-                  seeking_talent=seeking,
-                  seeking_description=seekingDesc,
-                  genres=genres,
-                  website=website)
-    db.session.add(venue)
+    newEntry = Venue(name=name, city=city, state=venueState, address=address, phone=phone, image_link=image, facebook_link=facebook, seeking_talent=seeking, seeking_description=seekingDesc, genres=genres, website=website)
+    db.session.add(newEntry)
     db.session.commit()
   except:
     error = True
