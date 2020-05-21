@@ -464,9 +464,26 @@ def create_artist_submission():
   phone = request.form['phone']
   image = request.form['image_link']
   genres = request.form.getlist('genres')
-  facebook = request.form['facebook_linke']
+  facebook = request.form['facebook_link']
+  seeking = request.form['seeking_venue']
+  seekingDesc = request.form['seeking_description']
+  website = request.form['website']
+  if seeking == 'True':
+    seeking = True
+  else:
+    seeking = False
+    
   try:
-    newEntry = 
+    newEntry = Artist(name=name,
+                      city=city,
+                      state=state,
+                      phone=phone,
+                      genres=genres,
+                      image_link=image,
+                      facebook_link=facebook,
+                      seeking_venue=seeking,
+                      seeking_description=seekingDesc,
+                      website=website)
     db.session.add(newEntry)
     db.session.commit()
   except:
