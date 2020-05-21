@@ -252,6 +252,11 @@ def create_venue_submission():
   seekingDesc = request.form['seeking_description']
   genres = request.form['genres']
   website = request.form['website']
+
+  if seeking == 'True':
+    seeking = True
+  else:
+    seeking = False
   #try:
   newEntry = Venue(name=name, city=city, state=venueState, address=address, phone=phone, image_link=image, facebook_link=facebook, seeking_talent=seeking, seeking_description=seekingDesc, genres=genres, website=website)
   db.session.add(newEntry)
