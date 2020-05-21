@@ -2,10 +2,17 @@ from datetime import datetime
 from flask_wtf import Form
 from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField
 from wtforms.validators import DataRequired, AnyOf, URL, InputRequired
+import app
+from flask_sqlalchemy import SQLAlchemy
 
 class ShowForm(Form):
-    artist_id = StringField(
-        'artist_id'
+    artists = Artist.query.all()
+    artist_id = SelectField(
+        'artist_id', validators=[DataRequired()],
+        choices=[
+            for artist in artists:
+                (artist.id, artist.name)
+        ]
     )
     venue_id = StringField(
         'venue_id'
