@@ -241,6 +241,7 @@ def create_venue_form():
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
   #form = VenueForm(request.form)
+  error = False
   name = request.form['name']
   city = request.form['city']
   venueState = request.form['state']
@@ -257,30 +258,21 @@ def create_venue_submission():
     seeking = True
   else:
     seeking = False
-  #try:
-  #newEntry = Venue(name=name, city=city, state=venueState, address=address, phone=phone, image_link=image, facebook_link=facebook, seeking_talent=seeking, seeking_description=seekingDesc, genres=genres, website=website)
-  #db.session.add(newEntry)
-  #db.session.commit()
-  #except Exception as e:
-  #  print(e)
-  #  db.session.rollback()
-  #finally:
-  #db.session.close()
-  #if error:
-  #  flash('An error occured. Venue ' + name + ' could not be listed.')
-  #  return redirect(url_for('index'))
-  #else:
-  flash('Venue ' + request.form['name'] + ' was successfully listed!')
-  return redirect(url_for('index'))
-  # TODO: insert form data as a new Venue record in the db, instead
-  # TODO: modify data to be the data object returned from db insertion
-
-  # on successful db insert, flash success
-  
-  # TODO: on unsuccessful db insert, flash an error instead.
-  # e.g., flash('An error occurred. Venue ' + data.name + ' could not be listed.')
-  # see: http://flask.pocoo.org/docs/1.0/patterns/flashing/
-  
+  try:
+    newEntry = Venue(name=name, city=city, state=venueState, address=address, phone=phone, image_link=image, facebook_link=facebook, seeking_talent=seeking, seeking_description=seekingDesc, genres=genres, website=website)
+    db.session.add(newEntry)
+    db.session.commit()
+  except:
+    error = True
+    db.session.rollback()
+  finally:
+    db.session.close()
+  if error:
+    flash('An error occured. Venue ' + name + ' could not be listed.')
+    return redirect(url_for('index'))
+  else:
+    flash('Venue ' + request.form['name'] + ' was successfully listed!')
+    return redirect(url_for('index'))
 
 @app.route('/venues/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
