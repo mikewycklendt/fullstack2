@@ -15,6 +15,7 @@ from forms import *
 from flask_migrate import Migrate
 import config
 from forms import VenueForm, ShowForm, ArtistForm
+import db
 
 app = Flask(__name__)
 moment = Moment(app)
