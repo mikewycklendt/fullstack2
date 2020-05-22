@@ -12,26 +12,42 @@
           <label>City & State</label>
           <div class="form-inline">
             <div class="form-group">
-              {{ form.city(class_ = 'form-control', placeholder='City', autofocus = true) }}
+              {{ form.city(class_ = 'form-control', placeholder={{artist.city}}, autofocus = true) }}
             </div>
             <div class="form-group">
-              {{ form.state(class_ = 'form-control', placeholder='State', autofocus = true) }}
+              {{ form.state(class_ = 'form-control', placeholder={{artist.state}}, id=form.state.id, autofocus = true) }}
             </div>
           </div>
       </div>
       <div class="form-group">
           <label for="phone">Phone</label>
-          {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true) }}
+          {{ form.phone(class_ = 'form-control', placeholder={{artist.phone}}, autofocus = true) }}
         </div>
       <div class="form-group">
         <label for="genres">Genres</label>
         <small>Ctrl+Click to select multiple</small>
-        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.state, autofocus = true) }}
+        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.genres.id, autofocus = true) }}
       </div>
       <div class="form-group">
-          <label for="genres">Facebook Link</label>
-          {{ form.facebook_link(class_ = 'form-control', placeholder='http://', id=form.state, autofocus = true) }}
+          <label for="facebook_link">Facebook Link</label>
+          {{ form.facebook_link(class_ = 'form-control', placeholder=((artist.facebook_link)), id=facebook_link, autofocus = true) }}
         </div>
+        <div class="form-group">
+          <label for="seeking_venue">Is the artist currently seeking a venue?</label>
+          {{ form.seeking_venue(class_ = 'form-control', id=form.seeking_venue.id, placeholder={{artist.seeking_venue}}, autofocus = true) }}
+        </div>
+        <div class="form-group">
+          <label for="seeking_description">What kind of venue are you looking for?</label>
+          {{ form.seeking_description(class_ = 'form-control', id=seeking_description, placeholder={{artist.seeking_description}}, autofocus = true) }}
+        </div>
+        <div class="form-group">
+          <label for="website">Website</label>
+          {{ form.website(class_ = 'form-control', id=website, placeholder={{artist.website}}, autofocus = true) }}
+        </div>
+        <div class="form-group">
+          <label for="image_link">Artist Image Link</label>
+          {{ form.image_link(class_ = 'form-control', id=image_link, placeholder={{artist.image_link}}, autofocus = true) }}
+      </div>
       <input type="submit" value="Edit Artist" class="btn btn-primary btn-lg btn-block">
     </form>
   </div>
