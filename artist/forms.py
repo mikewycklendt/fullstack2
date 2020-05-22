@@ -8,15 +8,15 @@ from flask_sqlalchemy import SQLAlchemy
 from db import Artist, Venue, Show
 
 class ShowForm(Form):
-    #artists = Artist.query.all()
-    #artistsSelect = []
+    artists = Artist.query.all()
+    artistsSelect = []
 
-    #for artist in artists:
-    #    artistsSelect += (artist.id, artist.name)
+    for artist in artists:
+        artistsSelect += (artist.id, artist.name)
 
     artists = SelectField(
         'artists', validators=[DataRequired()],
-        choices=[(1, 'Artist'), (2, 'Artist 2')]
+        choices=artistsSelect
     )
 
     venue_id = StringField(
