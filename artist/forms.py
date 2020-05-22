@@ -2,7 +2,7 @@ from datetime import datetime
 from flask_wtf import Form
 from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField
 from wtforms.validators import DataRequired, AnyOf, URL, InputRequired
-from app import Artist, Venue, Show
+import app
 
 class ShowForm(Form):
     #artists = Artist.query.all()
