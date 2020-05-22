@@ -9,10 +9,7 @@ from db import Artist, Venue, Show
 
 class ShowForm(Form):
     artists = Artist.query.all()
-    artistsSelect = []
-
-    for artist in artists:
-        artistsSelect += (artist.id, artist.name)
+    artistsSelect = [(artist.id, artist.name) for artist in artists]
 
     artists = SelectField(
         'artists', validators=[DataRequired()],
