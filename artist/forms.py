@@ -14,9 +14,9 @@ class ShowForm(Form):
     #for artist in artists:
     #    artistsSelect += (artist.id, artist.name)
 
-    artist_id = SelectField(
-        'artist_id', validators=[DataRequired()],
-        choices=[(1, 'Artist')]
+    artists = SelectField(
+        'artists', validators=[DataRequired()],
+        choices=[(1, 'Artist'), (2, 'Artist 2')]
     )
 
     venue_id = StringField(
