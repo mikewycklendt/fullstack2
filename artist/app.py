@@ -470,9 +470,7 @@ def create_show_submission():
 @app.route('/show/delete', methods=['DELETE'])
 def delete_show():
   try:
-  	Show.query.filter_by(id=1).delete()
-    Show.query.filter_by(id=2).delete()
-    Show.query.filter_by(id=3).delete()
+  	Show.query.all().delete()
   	db.session.commit()
 	except:
 		db.session.rollback()
