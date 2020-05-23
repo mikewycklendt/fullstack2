@@ -471,7 +471,7 @@ def create_show_submission():
 def delete_show():
   Show.query.all().delete()
   db.session.commit()
-	db.session.close()
+  db.session.close()
   flash('Shows Deleted')
   return redirect(url_for('index'))
 
