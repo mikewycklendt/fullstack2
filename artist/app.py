@@ -266,8 +266,7 @@ def show_artist(artist_id):
   shows = Show.query.filter_by(artist_id=artist_id).all()
   for show in shows:
     print(show.id)
-  
-  pastshows = db.session.query(Show).
+
     "id": 3,
     "name": "The Wild Sax Band",
     "genres": ["Jazz", "Classical"],
