@@ -467,7 +467,7 @@ def create_show_submission():
     flash('Show was successfully listed!')
     return redirect(url_for('index'))
 
-@app.route('/show/delete', methods=['DELETE'])
+@app.route('/show/delete', methods=['GET', 'DELETE'])
 def delete_show():
   Show.query.all().delete()
   db.session.commit()
