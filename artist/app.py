@@ -467,6 +467,19 @@ def create_show_submission():
     flash('Show was successfully listed!')
     return redirect(url_for('index'))
 
+@app.route('/show/delete', methods=['DELETE'])
+def delete_show():
+		Show.query.filter_by(id=1).delete()
+    Show.query.filter_by(id=2).delete()
+    Show.query.filter_by(id=3).delete()
+		db.session.commit()
+	except:
+		db.session.rollback()
+	finally:
+		db.session.close()
+    flash('Shows Deleted')
+    return redirect(url_for('index'))
+
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('errors/404.html'), 404
