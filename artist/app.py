@@ -263,7 +263,7 @@ def show_artist(artist_id):
   # shows the venue page with the given venue_id
   # TODO: replace with real venue data from the venues table, using venue_id
   artist = db.session.query(Artist).filter_by(id=artist_id)
-  shows = Show.query.join(Venue.pastshows).filter(Show.artist_id==artist_id).all()
+  shows = Venue.query.join(Venue.pastshows).filter(Show.artist_id==artist_id).all()
   for show in shows:
     print(show.name)
 
