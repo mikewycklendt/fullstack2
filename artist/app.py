@@ -469,15 +469,11 @@ def create_show_submission():
 
 @app.route('/show/delete', methods=['DELETE'])
 def delete_show():
-  try:
-  	Show.query.all().delete()
-  	db.session.commit()
-	except:
-		db.session.rollback()
-	finally:
-		db.session.close()
-    flash('Shows Deleted')
-    return redirect(url_for('index'))
+  Show.query.all().delete()
+  db.session.commit()
+	db.session.close()
+  flash('Shows Deleted')
+  return redirect(url_for('index'))
 
 @app.errorhandler(404)
 def not_found_error(error):
