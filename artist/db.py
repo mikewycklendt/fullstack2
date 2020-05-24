@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, Response, flash, redirect, ur
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-import config
+
 
 app = Flask(__name__)
 moment = Moment(app)
@@ -10,7 +10,7 @@ moment = Moment(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:postgres@3.134.26.61:5432/artistapp'
 db = SQLAlchemy(app)
 
-migrate = Migrate(app, db)
+#migrate = Migrate(app, db)
 
 class Venue(db.Model):
     __tablename__ = 'venue'
