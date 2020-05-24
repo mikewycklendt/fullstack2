@@ -449,10 +449,19 @@ def create_show_submission():
   venue_id = request.form['venue_id']
   artist_id = request.form['artists']
   start_time = request.form['start_time']
+  venue = Venue.query.filter_by(id=venue_id).first()
+  artist = Artist.query.filter_by(id=artist_id).first()
+  artist_name = artist.name
+  venue_name = venue.name
+  venue_image = venue.image_link
+
   try:
     newEntry = Show(venue_id=venue_id,
                     artist_id=artist_id,
-                    start_time=start_time)
+                    start_time=start_time,
+                    artist_name=artist_name,
+                    venue_name=venue_name,
+                    venue_image=venue_image)
     db.session.add(newEntry)
     db.session.commit()
   except:
