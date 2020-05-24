@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, Response, flash, redirect, ur
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+import config
 
 app = Flask(__name__)
 moment = Moment(app)
