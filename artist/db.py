@@ -51,3 +51,8 @@ class Show(db.Model):
     venue_name = db.Column(db.String())
     venue_image = db.Column(db.String())
     start_time = db.Column(db.DateTime(), nullable=False)
+
+if __name__ == '__main__':
+    app.debug = True
+    app.secret_key = config.SECRET_KEY
+    app.run(host='0.0.0.0', port=80)
