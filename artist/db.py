@@ -10,8 +10,6 @@ moment = Moment(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:postgres@3.134.26.61:5432/artistapp'
 db = SQLAlchemy(app)
 
-migrate = Migrate(app, db)
-
 class Venue(db.Model):
     __tablename__ = 'venue'
     id = db.Column(db.Integer, primary_key=True)
@@ -53,7 +51,7 @@ class Show(db.Model):
     venue_image = db.Column(db.String())
     start_time = db.Column(db.DateTime(), nullable=False)
 
-if __name__ == '__main__':
-    app.debug = True
-    app.secret_key = config.SECRET_KEY
-    app.run(host='0.0.0.0', port=80)
+#if __name__ == '__main__':
+#    app.debug = True
+#    app.secret_key = config.SECRET_KEY
+#    app.run(host='0.0.0.0', port=80)
