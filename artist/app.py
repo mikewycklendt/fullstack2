@@ -15,7 +15,7 @@ from forms import *
 from flask_migrate import Migrate
 import config
 from forms import VenueForm, ShowForm, ArtistForm
-import db
+
 
 app = Flask(__name__)
 moment = Moment(app)
@@ -23,7 +23,7 @@ moment = Moment(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://postgres:postgres@3.134.26.61:5432/artistapp'
 db = SQLAlchemy(app)
 
-migrate = Migrate(app, db)
+#migrate = Migrate(app, db)
 
 def format_datetime(value, format='medium'):
   date = dateutil.parser.parse(value)
