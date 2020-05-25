@@ -26,7 +26,7 @@ class Venue(db.Model):
     seeking_description = db.Column(db.String())
     genres = db.Column(db.ARRAY(db.String))
     website = db.Column(db.String())
-    pastshows = db.relationship('Show', backref='pastshows', lazy=True)
+    pastshows = db.relationship('Show', backref='venue', lazy=True)
 
 class Artist(db.Model):
     __tablename__ = 'artist'
@@ -41,7 +41,7 @@ class Artist(db.Model):
     seeking_venue = db.Column(db.Boolean, nullable=False, default=False)
     seeking_description = db.Column(db.String())
     website = db.Column(db.String())
-    past_shows = db.relationship('Show', backref='shows', lazy=True)
+    past_shows = db.relationship('Show', backref='artist', lazy=True)
 
 class Show(db.Model):
     __tablename__ = 'show'
