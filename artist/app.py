@@ -15,6 +15,7 @@ from forms import *
 from flask_migrate import Migrate
 import config
 from forms import VenueForm, ShowForm, ArtistForm
+import datetime
 import db
 
 app = Flask(__name__)
@@ -265,7 +266,7 @@ def show_artist(artist_id):
   #shows = db.session.query(Show).filter_by(artist_id=artist_id)
 
   artist = Artist.query.filter_by(id=artist_id).first()
-  upcoming_shows = Show.query.filter_by(Show.artist_id==artist.id, Show.start_time>present.date())
+  upcoming_shows = Show.query.filter_by(Show.artist_id==artist.id, Show.start_time>datetime.today())
 
   for show in upcoming_shows:
     print(show.venue_name)
