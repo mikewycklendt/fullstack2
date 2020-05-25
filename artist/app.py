@@ -15,7 +15,7 @@ from forms import *
 from flask_migrate import Migrate
 import config
 from forms import VenueForm, ShowForm, ArtistForm
-import datetime
+from datetime import datetime
 import db
 
 app = Flask(__name__)
