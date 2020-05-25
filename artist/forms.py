@@ -18,10 +18,10 @@ class ShowForm(Form):
     #venues = Venue.query.all()
     #venuesSelect = [(venue.id, venue.name) for venue in venues]
 
-    venue_id = SelectField(
-        'venue_id', validators=[DataRequired()],
-        choices=venuesSelect
-    )
+    #venue_id = SelectField(
+    #    'venue_id', validators=[DataRequired()],
+    #    choices=venuesSelect
+    #)
     start_time = DateTimeField(
         'start_time',
         validators=[DataRequired()],
