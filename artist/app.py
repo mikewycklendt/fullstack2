@@ -264,7 +264,7 @@ def show_artist(artist_id):
   #artist = db.session.query(Artist).filter_by(id=artist_id)
   #shows = db.session.query(Show).filter_by(artist_id=artist_id)
 
-  artist = Artist.query.join(Artist.pastshows).filter(Artist.id==artist_id, Show.artist_id==artist_id)
+  artist = Artist.query.join(Artist.past_shows).filter(Artist.id==artist_id, Show.artist_id==artist_id)
 
   print(artist.pastshows)
 
