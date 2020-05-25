@@ -7,16 +7,16 @@ from flask_sqlalchemy import SQLAlchemy
 from db import Artist, Venue, Show
 
 class ShowForm(Form):
-    artists = Artist.query.all()
-    artistsSelect = [(artist.id, artist.name) for artist in artists]
+    #artists = Artist.query.all()
+    #artistsSelect = [(artist.id, artist.name) for artist in artists]
 
-    artists = SelectField(
-       'artists', validators=[DataRequired()],
-        choices=artistsSelect
-    )
+    #artists = SelectField(
+    #   'artists', validators=[DataRequired()],
+    #    choices=artistsSelect
+    #)
 
-    venues = Venue.query.all()
-    venuesSelect = [(venue.id, venue.name) for venue in venues]
+    #venues = Venue.query.all()
+    #venuesSelect = [(venue.id, venue.name) for venue in venues]
 
     venue_id = SelectField(
         'venue_id', validators=[DataRequired()],
