@@ -264,7 +264,7 @@ def show_artist(artist_id):
   #artist = db.session.query(Artist).filter_by(id=artist_id)
   #shows = db.session.query(Show).filter_by(artist_id=artist_id)
 
-  artist = Artist.query.filter_by(artist_id=artist_id).first()
+  artist = Artist.query.filter_by(id=artist_id).first()
   upcoming_shows = Show.query.filter_by(Show.artist_id==artist.id, Show.start_time>present.date())
 
   for show in upcoming_shows:
