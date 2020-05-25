@@ -310,14 +310,13 @@ def show_artist(artist_id):
 
   #artist = Artist.query.join(Artist.pastshows).filter(Artist.id=artist_id, Show.artist_id=artist_id)
 
-  print(artist.pastshows)
+  #print(artist.pastshows)
 
   data={
     "id": 3,
     "name": "The Wild Sax Band",
     "genres": ["Jazz", "Classical"],
-    "city": "San Francisco",
-    "state": "CA",
+    "city": "Sg"CA",
     "phone": "432-325-5432",
     "seeking_venue": False,
     "image_link": "https://images.unsplash.com/photo-1558369981-f9ca78462e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=794&q=80",
