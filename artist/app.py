@@ -273,7 +273,11 @@ def show_artist(artist_id):
     print(show.venue_name)
   past_shows = Show.query.filter(Show.artist_id==artist.id, Show.start_time<today).all()
 
-  print(upcoming_shows.length())
+  upcoming_count = Show.query.filter(Show.artist_id==artist.id, Show.start_time>today).count()
+  past_count = Show.query.filter(Show.artist_id==artist.id, Show.start_time<today).count()
+
+  print(upcoming_count)
+  print(past_count)
   data={
     "id": 3,
     "name": "The Wild Sax Band",
