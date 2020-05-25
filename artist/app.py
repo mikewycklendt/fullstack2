@@ -266,7 +266,7 @@ def show_artist(artist_id):
 
   artist = Artist.query.join(Artist.past_shows).filter(Artist.id==artist_id, Show.artist_id==artist_id)
 
-  print(artist.pastshows)
+  print(artist.past_shows)
 
   data={
     "id": 3,
