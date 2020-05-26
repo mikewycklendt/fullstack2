@@ -285,8 +285,9 @@ def show_artist(artist_id):
 #  ----------------------------------------------------------------
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
 def edit_artist(artist_id):
+  Artist.query.filter_by(id=artist_id).first()
   form = ArtistForm()
-  artist = db.session.query(Artist).filter_by(id=artist_id)
+
   return render_template('forms/edit_artist.html', form=form, artist=artist)
 
 @app.route('/artists/<int:artist_id>/edit', methods=['POST'])
