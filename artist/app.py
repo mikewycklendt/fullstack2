@@ -287,6 +287,9 @@ def show_artist(artist_id):
 def edit_artist(artist_id):
   artist = Artist.query.filter_by(id=artist_id).first()
   form = ArtistForm()
+  form.state.data = artist.state
+  form.genres.data = artist.genres
+  form.seeking_venue.data = artist.seeking_venue
 
   return render_template('forms/edit_artist.html', form=form, artist=artist)
 
