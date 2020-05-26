@@ -15,7 +15,7 @@
               {{ form.city(class_ = 'form-control', id=city, placeholder=artist.city, autofocus = true) }}
             </div>
             <div class="form-group">
-              {{ form.state(class_ = 'form-control', placeholder=artist.state, id=form.state.id, autofocus = true, form.state.data = artist.state) }}
+              {{ form.state(class_ = 'form-control', placeholder=artist.state, id=form.state.id, autofocus = true, data = artist.state) }}
             </div>
           </div>
       </div>
@@ -26,7 +26,7 @@
       <div class="form-group">
         <label for="genres">Genres</label>
         <small>Ctrl+Click to select multiple</small>
-        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.genres.id, autofocus = true, form.genres.data = artist.genres) }}
+        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.genres.id, autofocus = true, data = artist.genres) }}
       </div>
       <div class="form-group">
           <label for="facebook_link">Facebook Link</label>
@@ -34,7 +34,7 @@
         </div>
         <div class="form-group">
           <label for="seeking_venue">Is the artist currently seeking a venue?</label>
-          {{ form.seeking_venue(class_ = 'form-control', id=form.seeking_venue.id, placeholder=artist.seeking_venue, autofocus = true, form.seeking_venue.data = artist.seeking_venue) }}
+          {{ form.seeking_venue(class_ = 'form-control', id=form.seeking_venue.id, placeholder=artist.seeking_venue, autofocus = true, data = artist.seeking_venue) }}
         </div>
         <div class="form-group">
           <label for="seeking_description">What kind of venue are you looking for?</label>
