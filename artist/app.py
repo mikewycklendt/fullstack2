@@ -56,7 +56,7 @@ def venues():
     areas = Venue.query.filter_by(state=area.state).filter_by(city=area.city).all()
     venue_data = []
     for venue in areas:
-      venue_data.append({'id':venue_id, 'name':venue. name})
+      venue_data.append({'id':venue.id, 'name':venue.name})
       data.append({'city':area.city, 'state':area.state, 'venues':venue_data})
 
   print(data)
