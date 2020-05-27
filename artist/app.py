@@ -50,7 +50,7 @@ def index():
 def venues():
   # TODO: replace with real venues data.
   #       num_shows should be aggregated based on number of upcoming shows per venue.
-  areas = db.session.query(venue.city,Venue.state).distinct(Venue.city, Venue.state)
+  areas = db.session.query(Venue.city,Venue.state).distinct(Venue.city, Venue.state)
   data = []
   for area in areas:
     areas = Venue.query.filter_by(state=area.state).filter_by(city=area.city).all()
