@@ -61,7 +61,7 @@ def venues():
     for venue in venues:
       show_count = db.session.query(Show).filter(Show.venue_id == venue.id, Show.start_time>today).count()
       venue_data.append({'id':venue.id, 'name':venue.name, 'shows':show_count})
-    data.append({'venues': venue_data})
+      data.venues.append(venue_data)
 
   print(data)
   
