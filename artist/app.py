@@ -54,7 +54,8 @@ def venues():
                             Venue.state, 
                             Venue.name, 
                             Venue.id, 
-                            Show.start_time).join(Show).group_by(Venue.city, Venue.state, Venue.name, Venue.id, Show.start_time)
+                            Show.venue_id,
+                            Show.start_time).join(Show).group_by(Venue.city).filter(Venue.id == Show.venue_id)
   for row in query:
     print(row)
   
