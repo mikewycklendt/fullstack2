@@ -57,7 +57,7 @@ def venues():
   for area in areas:
     venues = Venue.query.filter_by(state=area.state).filter_by(city=area.city).all()
     venue_data = []
-    data.append({'city':area.city, 'state': area.state)
+    data.append({'city':area.city, 'state': area.state})
     for venue in venues:
       show_count = db.session.query(Show).filter(Show.venue_id == venue.id, Show.start_time>today).count()
       venue_data.append({'id':venue.id, 'name':venue.name, 'shows':show_count})
