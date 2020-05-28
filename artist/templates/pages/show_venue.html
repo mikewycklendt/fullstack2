@@ -85,7 +85,7 @@
 		console.log(venue_id)
 		let r = confirm("Are you sure you want to delete this venue?");
 		if (r == true) {
-			fetch('/venues/delete/' + venue_id, {
+			fetch('/deletevenue/' + venue_id, {
 				method: 'DELETE'
 			})
 		}
