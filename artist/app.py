@@ -86,10 +86,10 @@ def show_venue(venue_id):
 
   today = datetime.now()
   venue = db.session.query(Venue).filter_by(id=venue_id).one()
-  upcoming_shows_count = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time>today).count()
-  past_shows_count = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time<today).count()
-  pastshows = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time<today).all()
-  upcomingshows = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time>today).all()
+  upcoming_shows_count = db.session.query(Show).filter(Show.venue_id == venue_id, Show.start_time>today).count()
+  past_shows_count = db.session.query(Show).filter(Show.venue_id == venue_id, Show.start_time<today).count()
+  pastshows = db.session.query(Show).filter(Show.venue_id == venue_id, Show.start_time<today).all()
+  upcomingshows = db.session.query(Show).filter(Show.venue_id == venue_id, Show.start_time>today).all()
 
   past_shows = []
   upcoming_shows = []
