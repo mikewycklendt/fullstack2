@@ -73,7 +73,26 @@
 		</div>
 		{% endfor %}
 	</div>
+	<div class="row">
+		<button class="btn btn-default btn-lg" id="deleteArtist" data-id="{{ venue.id }}">Delete this Artist</button>
+	</div>
 </section>
+
+<script>
+	const btn = document.getElementById('deleteArtist');
+	btn.onclick = function(e) {
+		venue_id = e.target.dataset['id'];
+		let r = confirm("Are you sure you want to delete this venue?");
+		if (r == true) {
+			fetch('/venues/' + venue_id, {
+				method: 'DELETE'
+			})
+		}
+	}
+
+</script>
+
+
 
 {% endblock %}
 
