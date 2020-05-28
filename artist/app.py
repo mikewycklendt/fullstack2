@@ -148,6 +148,59 @@ def create_venue_submission():
     flash('Venue ' + request.form['name'] + ' was successfully listed!')
     return redirect(url_for('index'))
 
+@app.route('/venues/<int:venue_id>/edit', methods=['GET'])
+def edit_venue(venue_id):
+  venue = Venue.query.filter_by(id=venue_id).one()
+  form = VenueForm()
+  form.state.data = venue.state
+  form.genres.data = venue.genres
+  form.seeking_talent.data = venue.seeking_talent
+
+  return render_template('forms/edit_venue.html', form=form, venue=venue)
+
+@app.route('/venues/<int:venue_id>/edit', methods=['POST'])
+def edit_venue_submission(venue_id):
+  venue = Venue.query.filter_by(id=venue_id).one()
+  error = False
+  name = request.form['name']
+  city = request.form['city']
+  state = request.form['state']
+  phone = request.form['phone']
+  image = request.form['image_link']
+  genres = request.form.getlist('genres')
+  facebook = request.form['facebook_link']
+  seeking = request.form['seeking_talent']
+  seekingDesc = request.form['seeking_description']
+  website = request.form['website']
+  if seeking == 'True':
+    seeking = True
+  else:
+    seeking = False
+    
+  try:
+    venue.name = name
+    venue.city = city
+    venue.state = state
+    venue.phone = phone
+    venue.image_link = image
+    venue.genres = genres
+    venue.facebook_link = facebook
+    venue.seeking_talent = seeking
+    venue.seeking_description = seekingDesc
+    venue.website = website
+    db.session.commit()
+  except:
+    error = True
+    db.session.rollback()
+  finally:
+    db.session.close()
+  if error:
+    flash('An error occured.  Venue ' + name + ' could not be edited.')
+    return redirect(url_for('show_venue', venue_id=venue.id))
+  else:
+    flash('Venue ' + request.form['name'] + ' was successfully edited!')
+    return redirect(url_for('show_venue', venue_id=venue.id))
+
 @app.route('/deletevenue/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
   error = False
