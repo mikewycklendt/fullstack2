@@ -151,7 +151,7 @@ def create_venue_submission():
 @app.route('/venues/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
   error = False
-  venue = Venue.query.filter_by(id=venue_id)
+  venue = db.session.query(Venue).filter_by(id=venue_id).one()
   name = venue.name
   try:
     Venue.query.filter_by(id=venue_id).delete()
