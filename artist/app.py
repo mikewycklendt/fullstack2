@@ -48,8 +48,6 @@ def index():
 
 @app.route('/venues')
 def venues():
-  # TODO: replace with real venues data.
-  #       num_shows should be aggregated based on number of upcoming shows per venue.
   today = datetime.now()
   areas = db.session.query(Venue.city,Venue.state).distinct(Venue.city, Venue.state)
 
@@ -63,28 +61,6 @@ def venues():
     data.append({'city':area.city, 'state': area.state, 'venues': venue_data})
 
   print(data)
-  
-  #data=[{
-  #  "city": "San Francisco",
-  #  "state": "CA",
-  #  "venues": [{
-  #    "id": 1,
-  #    "name": "The Musical Hop",
-  #    "num_upcoming_shows": 0,
-  #  }, {
-  #    "id": 3,
-  #    "name": "Park Square Live Music & Coffee",
-  #    "num_upcoming_shows": 1,
-  #  }]
-  #}, {
-  #  "city": "New York",
-  #  "state": "NY",
-  #  "venues": [{
-  #    "id": 2,
-  #    "name": "The Dueling Pianos Bar",
-  #    "num_upcoming_shows": 0,
-  #  }]
-  #}]
   
   return render_template('pages/venues.html', areas=data)
 
@@ -107,6 +83,25 @@ def search_venues():
 def show_venue(venue_id):
   # shows the venue page with the given venue_id
   # TODO: replace with real venue data from the venues table, using venue_id
+
+  today = datetime.now()
+  venue = db.session.query(Venue).filter_by(id=venue_id).one()
+  upcoming_shows_count = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time>today).count()
+  past_shows_count = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time<today).count()
+  data = {}
+  data.append(venue)
+
+  print(data)
+  
+  #for area in areas:
+  #  venues = Venue.query.filter_by(state=area.state).filter_by(city=area.city).all()
+  #  venue_data = []
+  #  for venue in venues:
+  #    show_count = db.session.query(Show).filter(Show.venue_id == venue.id, Show.start_time>today).count()
+  #    venue_data.append({'id':venue.id, 'name':venue.name, 'shows':show_count})
+  #  data.append({'city':area.city, 'state': area.state, 'venues': venue_data})
+
+
   data1={
     "id": 1,
     "name": "The Musical Hop",
