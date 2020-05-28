@@ -148,7 +148,7 @@ def create_venue_submission():
     flash('Venue ' + request.form['name'] + ' was successfully listed!')
     return redirect(url_for('index'))
 
-@app.route('/venues/<venue_id>', methods=['DELETE'])
+@app.route('/venues/delete/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
   error = False
   venue = db.session.query(Venue).filter_by(id=venue_id).one()
