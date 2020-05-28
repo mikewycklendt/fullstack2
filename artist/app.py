@@ -88,10 +88,22 @@ def show_venue(venue_id):
   venue = db.session.query(Venue).filter_by(id=venue_id).one()
   upcoming_shows_count = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time>today).count()
   past_shows_count = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time<today).count()
-  data = []
-  data.append(venue)
+  pastshows = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time<today).all()
+  upcomingshows = db.session.query(Show).filter_by(Show.venue_id == venue_id, Show.start_time>today).all()
 
-  print(data)
+  past_shows = []
+  upcoming_shows = []
+
+  for show in pastshows:
+    artist = db.session.query(Artist).filter_by(show.artist_id).one()
+    past_shows.append({'artist_id': artist.id, 'artist_name': artist.name, 'artist_image_link': artist.image_link, 'start_time': show.start_time})
+
+  for show in upcomingshows:
+    artist = db.session.query(Artist).filter_by(show.artist_id).one()
+    upcoming_shows.append({'artist_id': artist.id, 'artist_name': artist.name, 'artist_image_link': artist.image_link, 'start_time': show.start_time})
+
+  print(past_shows)
+  print(upcoming_shows)
   
   #for area in areas:
   #  venues = Venue.query.filter_by(state=area.state).filter_by(city=area.city).all()
@@ -179,8 +191,8 @@ def show_venue(venue_id):
     "past_shows_count": 1,
     "upcoming_shows_count": 1,
   }
-  data = list(filter(lambda d: d['id'] == venue_id, [data1, data2, data3]))[0]
-  return render_template('pages/show_venue.html', venue=data)
+  #data = list(filter(lambda d: d['id'] == venue_id, [data1, data2, data3]))[0]
+  return render_template('pages/show_venue.html', venue=venue, upcoming_shows_count=upcoming_shows_count, past_shows_count=past_shows_count, upcoming_shows=upcoming_shows, past_shows=past_shows)
 
 #  Create Venue
 #  ----------------------------------------------------------------
