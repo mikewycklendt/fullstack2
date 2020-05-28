@@ -151,7 +151,8 @@ def create_venue_submission():
 @app.route('/venues/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
   error = False
-  venue = Venue.query.filter_by(id=venue_id).one()
+  venue = Venue.query.filter_by(id=venue_id)
+  name = venue.name
   try:
     Venue.query.filter_by(id=venue_id).delete()
     db.session.commit()
@@ -161,10 +162,10 @@ def delete_venue(venue_id):
   finally:
     db.session.close()
   if error:
-    flash('An Error occured.  The venue ' + venue.name + ' could not be deleted.')
+    flash('An Error occured.  The venue ' + name + ' could not be deleted.')
     return redirect(url_for('venues'))
   else:
-    flash('Success.  Venue ' + venue.name + ' was deleted.')
+    flash('Success.  Venue ' + name + ' was deleted.')
     return redirect(url_for('venues'))
 #  Artists
 #  ----------------------------------------------------------------
