@@ -153,14 +153,14 @@ def delete_venue(venue_id):
   error = False
   venue = Venue.query.filter_by(id=venue_id).one()
   try:
-		Venue.query.filter_by(id=venue_id).delete()
-		db.session.commit()
-	except:
-		error = True
+    Venue.query.filter_by(id=venue_id).delete()
+    db.session.commit()
+  except:
+    error = True
     db.session.rollback()
-	finally:
-		db.session.close()
-	if error:
+  finally:
+    db.session.close()
+  if error:
     flash('An Error occured.  The venue ' + venue.name + ' could not be deleted.')
   else:
     flash('Success.  Venue ' + venue.name + ' was deleted.')
