@@ -95,11 +95,11 @@ def show_venue(venue_id):
   upcoming_shows = []
 
   for show in pastshows:
-    artist = db.session.query(Artist).filter_by(show.artist_id).one()
+    artist = db.session.query(Artist).filter_by(id=show.artist_id).one()
     past_shows.append({'artist_id': artist.id, 'artist_name': artist.name, 'artist_image_link': artist.image_link, 'start_time': show.start_time})
 
   for show in upcomingshows:
-    artist = db.session.query(Artist).filter_by(show.artist_id).one()
+    artist = db.session.query(Artist).filter_by(id=show.artist_id).one()
     upcoming_shows.append({'artist_id': artist.id, 'artist_name': artist.name, 'artist_image_link': artist.image_link, 'start_time': show.start_time})
 
   print(past_shows)
