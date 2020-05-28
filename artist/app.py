@@ -152,13 +152,9 @@ def create_venue_submission():
 def delete_venue(venue_id):
   error = False
   venue = Venue.query.filter_by(id=venue_id).one()
-  shows = Show.query.filter_by(venue_id=venue_id).all()
   try:
     Venue.query.filter_by(id=venue_id).delete()
     db.session.commit()
-    for show in shows:
-      Show.query.filter_by(id=show.id)
-      db.session.commit()
   except:
     error = True
     db.session.rollback()
