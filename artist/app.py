@@ -209,7 +209,7 @@ def delete_venue(venue_id):
   name = venue.name
   #try:
   for show in shows:
-    show.delete()
+    db.session(Show).filter_by(id=show.id).delete()
     db.session.commit()
   Venue.query.filter_by(id=venue_id).delete()
   db.session.commit()
