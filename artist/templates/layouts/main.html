@@ -57,23 +57,27 @@
                 (request.endpoint == 'search_venues') or
                 (request.endpoint == 'show_venue') %}
               <form class="search" method="post" action="/venues/search">
+              <div class="row">
                 <input class="form-control"
                   type="search"
                   name="search_term"
                   placeholder="Find a venue"
                   aria-label="Search"> <input type="submit" value="Search" class="btn-search">
+              </div>
               </form>
               {% endif %}
               {% if (request.endpoint == 'artists') or
                 (request.endpoint == 'search_artists') or
                 (request.endpoint == 'show_artist') %}
               <form class="search" method="post" action="/artists/search">
+              <div class="row">
                 <input class="form-control"
                   type="search"
                   name="search_term"
                   placeholder="Find an artist"
                   aria-label="Search"> <input type="submit" value="Search" class="btn-search">
-              </form>
+              </div>
+                </form>
               {% endif %}
             </li>
           </ul>
