@@ -252,14 +252,7 @@ def search_artists():
   results = {'count': count, 'data':artists}
   print(results)
 
-  response={
-    "count": 1,
-    "data": [{
-      "id": 4,
-      "name": "Guns N Petals",
-      "num_upcoming_shows": 0,
-    }]
-  }
+  response=results
   return render_template('pages/search_artists.html', results=response, search_term=request.form.get('search_term', ''))
 
 @app.route('/artists/<int:artist_id>')
