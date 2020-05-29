@@ -206,20 +206,20 @@ def delete_venue(venue_id):
   error = False
   venue = db.session.query(Venue).filter_by(id=venue_id).one()
   name = venue.name
-  try:
-    Venue.query.filter_by(id=venue_id).delete()
-    db.session.commit()
-  except:
-    error = True
-    db.session.rollback()
-  finally:
-    db.session.close()
-  if error:
-    flash('An Error occured.  The venue ' + name + ' could not be deleted.')
-    return jsonify({'success': True})
-  else:
-    flash('Success.  Venue ' + name + ' was deleted.')
-    return jsonify({'success': True})
+  #try:
+  Venue.query.filter_by(id=venue_id).delete()
+  db.session.commit()
+  #except:
+  #  error = True
+  #  db.session.rollback()
+  #finally:
+  db.session.close()
+  #if error:
+  #  flash('An Error occured.  The venue ' + name + ' could not be deleted.')
+  #  return jsonify({'success': True})
+  #else:
+  flash('Success.  Venue ' + name + ' was deleted.')
+  return jsonify({'success': True})
 #  Artists
 #  ----------------------------------------------------------------
 @app.route('/artists')
