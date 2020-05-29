@@ -238,7 +238,8 @@ def search_artists():
   # search for "band" should return "The Wild Sax Band".
 
   search_term=request.form.get('search_term')
-  data = db.session.query(Artist).filter(Artist.name.like(%search_term%))
+  search = '%' + search_term + '%'
+  data = db.session.query(Artist).filter(Artist.name.like(search))
   print(data)
 
   response={
