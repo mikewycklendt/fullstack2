@@ -248,10 +248,10 @@ def search_artists():
 
   for result in data:
     shows = db.session.query(Show).filter(Show.artist_id=result.id, Show.start_time>today).count()
-    response.data.append({'id':result.id, 'name':result.name, 'num_upcoming_shows':})
+    response.data.append({'id':result.id, 'name':result.name, 'num_upcoming_shows':shows})
 
   print(response)
-  
+
   response={
     "count": 1,
     "data": [{
