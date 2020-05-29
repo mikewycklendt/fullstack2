@@ -80,12 +80,12 @@
 
 <script>
 	const btn = document.getElementById('deleteArtist');
-	btn.onclick = function(e) {
+	btn.onclick = async(e) =>{
 		venue_id = e.target.dataset['id'];
 		console.log(venue_id)
 		let r = confirm("Are you sure you want to delete this venue?");
 		if (r == true) {
-			fetch('/deletevenue/' + venue_id, {
+			response = fetch('/deletevenue/' + venue_id, {
 				method: 'DELETE'
 			})
 			.then(response => response.json())
