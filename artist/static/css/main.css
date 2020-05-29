@@ -79,7 +79,14 @@ p.lead {
   padding-right: 18px;
   font-size: 1.4rem;
 }
-
+.btn-search{
+  border-radius: 50px;
+  background: #f2f2f2;
+  border: none;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 1.4rem;
+}
 .btn-default {
     border: none;
     background-color: #dde2e7;
