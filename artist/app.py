@@ -203,10 +203,14 @@ def edit_venue_submission(venue_id):
 
 @app.route('/deletevenue/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
-  error = False
+  )error = False
   venue = db.session.query(Venue).filter_by(id=venue_id).one()
+  shows = db.session.query(Show).filter_by(venue_id=venue_id).all()
   name = venue.name
   #try:
+  for show in shows:
+    Show.query.fiter_by(id=show.id).delete()
+    db.session.commit()
   Venue.query.filter_by(id=venue_id).delete()
   db.session.commit()
   #except:
