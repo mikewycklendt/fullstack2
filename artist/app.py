@@ -244,13 +244,13 @@ def search_artists():
   for result in data:
     print(result.name)
 
-  results = {'count': count, 'data':[]}
-
+  
+  artists = []
   for result in data:
     shows = db.session.query(Show).filter(Show.artist_id==result.id, Show.start_time>today).count()
-    results.data.append({'id':result.id, 'name':result.name, 'num_upcoming_shows':shows})
-
-  print(response)
+    artists.append({'id':result.id, 'name':result.name, 'num_upcoming_shows':shows})
+  results = {'count': count, 'data':artists}
+  print(results)
 
   response={
     "count": 1,
