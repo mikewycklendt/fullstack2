@@ -213,22 +213,21 @@ def delete_venue(venue_id):
     db.session.commit()
   Venue.query.filter_by(id=venue_id).delete()
   db.session.commit()
-  #except:
-  #  error = True
-  #  db.session.rollback()
-  #finally:
-  db.session.close()
-  #if error:
-  #  flash('An Error occured.  The venue ' + name + ' could not be deleted.')
-  #  return jsonify({'success': True})
-  #else:
-  flash('Success.  Venue ' + name + ' was deleted.')
-  return jsonify({'success': True})
+  except:
+    error = True
+    db.session.rollback()
+  finally:
+    db.session.close()
+  if error:
+    flash('An Error occured.  The venue ' + name + ' could not be deleted.')
+    return jsonify({'success': True})
+  else:
+    flash('Success.  Venue ' + name + ' was deleted.')
+    return jsonify({'success': True})
 #  Artists
 #  ----------------------------------------------------------------
 @app.route('/artists')
 def artists():
-  # TODO: replace with real data returned from querying the database
   data = Artist.query.order_by('name').all()
   return render_template('pages/artists.html', artists=data)
 
@@ -249,12 +248,6 @@ def search_artists():
 
 @app.route('/artists/<int:artist_id>')
 def show_artist(artist_id):
-  # shows the venue page with the given venue_id
-  # TODO: replace with real venue data from the venues table, using venue_id
-  
-  #artist = db.session.query(Artist).filter_by(id=artist_id)
-  #shows = db.session.query(Show).filter_by(artist_id=artist_id)
-
   today = datetime.now()
 
   artist = Artist.query.filter_by(id=artist_id).first()
@@ -382,45 +375,52 @@ def create_artist_submission():
 
 @app.route('/shows')
 def shows():
-  # displays list of shows at /shows
-  # TODO: replace with real venues data.
-  #       num_shows should be aggregated based on number of upcoming shows per venue.
-  data=[{
-    "venue_id": 1,
-    "venue_name": "The Musical Hop",
-    "artist_id": 4,
-    "artist_name": "Guns N Petals",
-    "artist_image_link": "https://images.unsplash.com/photo-1549213783-8284d0336c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
-    "start_time": "2019-05-21T21:30:00.000Z"
-  }, {
-    "venue_id": 3,
-    "venue_name": "Park Square Live Music & Coffee",
-    "artist_id": 5,
-    "artist_name": "Matt Quevedo",
-    "artist_image_link": "https://images.unsplash.com/photo-1495223153807-b916f75de8c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",
-    "start_time": "2019-06-15T23:00:00.000Z"
-  }, {
-    "venue_id": 3,
-    "venue_name": "Park Square Live Music & Coffee",
-    "artist_id": 6,
-    "artist_name": "The Wild Sax Band",
-    "artist_image_link": "https://images.unsplash.com/photo-1558369981-f9ca78462e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=794&q=80",
-    "start_time": "2035-04-01T20:00:00.000Z"
-  }, {
-    "venue_id": 3,
-    "venue_name": "Park Square Live Music & Coffee",
-    "artist_id": 6,
-    "artist_name": "The Wild Sax Band",
-    "artist_image_link": "https://images.unsplash.com/photo-1558369981-f9ca78462e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=794&q=80",
-    "start_time": "2035-04-08T20:00:00.000Z"
-  }, {
-    "venue_id": 3,
-    "venue_name": "Park Square Live Music & Coffee",
-    "artist_id": 6,
-    "artist_name": "The Wild Sax Band",
-    "artist_image_link": "https://images.unsplash.com/photo-1558369981-f9ca78462e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=794&q=80",
-    "start_time": "2035-04-15T20:00:00.000Z"
-  }]
+  shows = db.session.query(Show).all()
+
+  data = []
+
+  for show in shows:
+    artist = db.session.query(Artist).filter_by(id=show.artist_id).one()
+    data.append({'venue_id': show.venue_id, 'venue_name': show.venue_name, 'artist_id': show.artist_id, 'artist_name': show.artist_name, 'artist_image_link': artist.image_link, 'start_time': str(show.start_time)})
+
+  print(data)
+
+  #data=[{
+  #  "venue_id": 1,
+  #  "venue_name": "The Musical Hop",
+  #  "artist_id": 4,
+  #  "artist_name": "Guns N Petals",
+  #  "artist_image_link": "https://images.unsplash.com/photo-1549213783-8284d0336c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+  #  "start_time": "2019-05-21T21:30:00.000Z"
+  #}, {
+  #  "venue_id": 3,
+  #  "venue_name": "Park Square Live Music & Coffee",
+  #  "artist_id": 5,
+  #  "artist_name": "Matt Quevedo",
+  #  "artist_image_link": "https://images.unsplash.com/photo-1495223153807-b916f75de8c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",
+  #  "start_time": "2019-06-15T23:00:00.000Z"
+  #}, {
+  #  "venue_id": 3,
+  #  "venue_name": "Park Square Live Music & Coffee",
+  #  "artist_id": 6,
+  #  "artist_name": "The Wild Sax Band",
+  #  "artist_image_link": "https://images.unsplash.com/photo-1558369981-f9ca78462e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=794&q=80",
+  #  "start_time": "2035-04-01T20:00:00.000Z"
+  #}, {
+  #  "venue_id": 3,
+  #  "venue_name": "Park Square Live Music & Coffee",
+  #  "artist_id": 6,
+  #  "artist_name": "The Wild Sax Band",
+  #  "artist_image_link": "https://images.unsplash.com/photo-1558369981-f9ca78462e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=794&q=80",
+  #  "start_time": "2035-04-08T20:00:00.000Z"
+  #}, {
+  #  "venue_id": 3,
+  #  "venue_name": "Park Square Live Music & Coffee",
+  #  "artist_id": 6,
+  #  "artist_name": "The Wild Sax Band",
+  #  "artist_image_link": "https://images.unsplash.com/photo-1558369981-f9ca78462e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=794&q=80",
+  #  "start_time": "2035-04-15T20:00:00.000Z"
+  #}]
   return render_template('pages/shows.html', shows=data)
 
 @app.route('/shows/create')
