@@ -216,10 +216,10 @@ def delete_venue(venue_id):
     db.session.close()
   if error:
     flash('An Error occured.  The venue ' + name + ' could not be deleted.')
-    return redirect(url_for('index'))
+    return jsonify({True})
   else:
     flash('Success.  Venue ' + name + ' was deleted.')
-    return redirect(url_for('index'))
+    return jsonify({True})
 #  Artists
 #  ----------------------------------------------------------------
 @app.route('/artists')
