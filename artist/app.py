@@ -240,7 +240,8 @@ def search_artists():
   search_term=request.form['search_term']
   search = '%' + search_term + '%'
   data = db.session.query(Artist).filter(Artist.name.like(search))
-  print(data)
+  for result in data:
+    print(result.name)
 
   response={
     "count": 1,
