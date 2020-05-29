@@ -207,12 +207,12 @@ def delete_venue(venue_id):
   venue = db.session.query(Venue).filter_by(id=venue_id).one()
   shows = db.session.query(Show).filter_by(venue_id=venue_id).all()
   name = venue.name
-  #try:
-  for show in shows:
-    db.session.delete(show)
+  try:
+    for show in shows:
+      db.session.delete(show)
+      db.session.commit()
+    Venue.query.filter_by(id=venue_id).delete()
     db.session.commit()
-  Venue.query.filter_by(id=venue_id).delete()
-  db.session.commit()
   except:
     error = True
     db.session.rollback()
