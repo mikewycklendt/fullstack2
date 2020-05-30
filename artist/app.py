@@ -85,7 +85,7 @@ def search_venues():
   print(results)
   
   response=results
-  
+
   return render_template('pages/search_venues.html', results=response, search_term=request.form.get('search_term', ''))
 
 @app.route('/venues/<int:venue_id>')
@@ -220,7 +220,7 @@ def delete_venue(venue_id):
     for show in shows:
       db.session.delete(show)
       db.session.commit()
-    Venue.query.filter_by(id=venue_id).delete()
+    db.session.delete(venue)
     db.session.commit()
   except:
     error = True
