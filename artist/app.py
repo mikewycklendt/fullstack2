@@ -415,7 +415,7 @@ def create_shows():
   venuesSelect = [(venue.id, venue.name) for venue in venues]
   
   form.artists.choices = artistsSelect
-  form.venue_id.choices = venueSelect
+  form.venue_id.choices = venuesSelect
 
   return render_template('forms/new_show.html', form=form)
 
