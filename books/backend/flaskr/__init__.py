@@ -8,6 +8,16 @@ from models import setup_db, Book
 
 BOOKS_PER_SHELF = 8
 
+def paginate_books(request, selection):
+	page = request.args.get('page', 1, type=int)
+	start = (page - 1) * BOOKS_PER_SHELF
+	end = start + BOOKS_PER_SHELF
+
+	books = [book.format() for book in selection]
+	current_books = books[start:end]
+
+	return current_books
+
 # @TODO: General Instructions
 #   - As you're creating endpoints, define them and then search for 'TODO' within the frontend to update the endpoints there. 
 #     If you do not update the endpoints, the lab will not work - of no fault of your API code! 
