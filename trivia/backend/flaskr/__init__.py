@@ -62,6 +62,8 @@ def get_questions():
 
   formatted_categories = [category.format() for category in categories]
 
+  print(formatted_categories)
+
   all_categories = []
 
   for category in formatted_categories:
