@@ -13,23 +13,23 @@ QUESTIONS_PER_PAGE = 10
 app = Flask(__name__)
 setup_db(app)
   
-  '''
-  @TODO: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
-  '''
+'''
+@TODO: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
+'''
 CORS(app, resources={r"/*": {"origins": "*"}})
-  '''
-  @TODO: Use the after_request decorator to set Access-Control-Allow
-  '''
+'''
+@TODO: Use the after_request decorator to set Access-Control-Allow
+'''
 @app.after_request
 def after_request(response):
   response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
   response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
   return response
-  '''
-  @TODO: 
-  Create an endpoint to handle GET requests 
-  for all available categories.
-  '''
+'''
+@TODO: 
+Create an endpoint to handle GET requests 
+for all available categories.
+'''
 @app.route('/categories', methods=['GET'])
 def get_categories():
 
