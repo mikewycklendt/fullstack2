@@ -21,8 +21,8 @@ def create_app(test_config=None):
   @TODO: Use the after_request decorator to set Access-Control-Allow
   '''
   @app.after_request
-	def after_request(response):
-	  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
+  def after_request(response):
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     return response
   '''
@@ -64,8 +64,6 @@ def create_app(test_config=None):
 
     for category in categories:
       categories += {'id': category.id, 'type': category.type}
-
-    QUESTIONS_PER_PAGE = 10
 
     page = request.args.get('page', 1, type=int)
     start = (page - 1) * QUESTIONS_PER_PAGE
