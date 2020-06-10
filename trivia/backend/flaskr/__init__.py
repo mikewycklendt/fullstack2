@@ -60,10 +60,12 @@ def get_questions():
 
   categories = Category.query.all()
 
-  all_categories = {}
+  formatted_categories = [category.format() for category in categories]
 
-  for category in categories:
-    categories += {'id': category.id, 'type': category.type}
+  all_categories = []
+
+  for category in formatted_categories:
+    all_categories += {'id': category.id, 'type': category.type}
 
   page = request.args.get('page', 1, type=int)
   start = (page - 1) * QUESTIONS_PER_PAGE
@@ -76,7 +78,7 @@ def get_questions():
     'success': True,
     'questions': current_questions,
     'total_questions': len(formatted_questions),
-    'categories': categories,
+    'categories': all_categories,
     'current_category': ''
   })
 
