@@ -177,9 +177,8 @@ def create_app(test_config=None):
   '''
   
   
-  if __name__ == '__main__':
-    app.debug = True
-    app.secret_key = config.SECRET_KEY
-    app.run(host='0.0.0.0', port=80)
+if __name__ == '__main__':
+  app.debug = True
+  app.run(host='0.0.0.0', port=80)
 
     
