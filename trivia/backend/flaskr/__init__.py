@@ -34,11 +34,11 @@ for all available categories.
 def get_categories():
 
   categories = Category.query.all()
+  categories_formatted = [category.format() for category in categories]
 
   return jsonify({
     'success': True,
-    'id': categories.id,
-    'type': categories.type
+    'categories': categories_formatted
   })
 
   '''
