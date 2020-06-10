@@ -30,7 +30,16 @@ def create_app(test_config=None):
   Create an endpoint to handle GET requests 
   for all available categories.
   '''
+  @app.route('/categories', methods=['GET'])
+  def get_categories():
 
+    categories = Category.query.all()
+
+    return jsonify({
+      'success': True,
+      'id': categories.id,
+      'type': categories.type
+    })
 
   '''
   @TODO: 
@@ -44,6 +53,34 @@ def create_app(test_config=None):
   ten questions per page and pagination at the bottom of the screen for three pages.
   Clicking on the page numbers should update the questions. 
   '''
+  @app.route('/questions', methods=['GET'])
+  def get_questions():
+
+    questions = Question.query.all()
+
+    categories = Category.query.all()
+
+    all_categories = {}
+
+    for category in categories:
+      categories += {'id': category.id, 'type': category.type}
+
+    QUESTIONS_PER_PAGE = 10
+
+    page = request.args.get('page', 1, type=int)
+    start = (page - 1) * QUESTIONS_PER_PAGE
+    end = start + QUESTIONS_PER_PAGE
+
+    formatted_questions = [question.format() for question in  questions]
+    current_questions = formatted_questions[start:end]
+
+    return jsonify({
+      'success': True,
+      'questions': current_questions,
+      'total_questions': len(formatted_questions),
+      'categories': categories,
+      'current_category': ''
+    })
 
   '''
   @TODO: 
@@ -83,7 +120,20 @@ def create_app(test_config=None):
   categories in the left column will cause only questions of that 
   category to be shown. 
   '''
+  @app.route('/categories/<int:category_id>/questions')
+  def questions_by_category(category_id):
 
+    questions = Question.query.filter(Question.category == str(category_id)).all()
+
+    formatted_questions = [question.format() for question in questions]
+    total_questions - len(formatted_questions)
+
+    return jsonify({
+      'success': True,
+      'questions': formatted_questions,
+      'total_questions': total_questions,
+      'current_category': category_id
+    })
 
   '''
   @TODO: 
@@ -97,12 +147,41 @@ def create_app(test_config=None):
   and shown whether they were correct or not. 
   '''
 
+  @app.route('/quizzes', methods=['POST'])
+  def quizzes():
+
+    previous_questions = body.get('previous_questions', None)
+    quiz_category = body.get('quiz_category', None)
+
+    questions = Question.query.filter(Question.category == quiz_category)\
+    
+    formatted_questions = [question.format() for question in questions]
+    filtered_questions = []
+
+    for question in formatted_questions:
+      for previous_question in previous_questions:
+        if previous_question == question.id:
+          print('question ' + question.id + ' filtered')
+        else:
+          filtered_questions += question
+          
+      returned_question = random.choice(filtered_questions)
+
+      return jsonify({
+        'success': True,
+        'question': returned_question.id
+      })
+
   '''
   @TODO: 
   Create error handlers for all expected errors 
   including 404 and 422. 
   '''
   
-  return app
+  
+  if __name__ == '__main__':
+    app.debug = True
+    app.secret_key = config.SECRET_KEY
+    app.run(host='0.0.0.0', port=80)
 
     
