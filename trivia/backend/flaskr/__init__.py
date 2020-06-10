@@ -165,10 +165,10 @@ def quizzes():
           
   returned_question = random.choice(filtered_questions)
 
-    return jsonify({
-      'success': True,
-      'question': returned_question.id
-    })
+  return jsonify({
+    'success': True,
+    'question': returned_question.id
+  })
 
   '''
   @TODO: 
