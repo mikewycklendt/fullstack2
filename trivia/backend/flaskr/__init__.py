@@ -8,38 +8,38 @@ from models import setup_db, Question, Category
 
 QUESTIONS_PER_PAGE = 10
 
-def create_app(test_config=None):
+#def create_app(test_config=None):
   # create and configure the app
-  app = Flask(__name__)
-  setup_db(app)
+app = Flask(__name__)
+setup_db(app)
   
   '''
   @TODO: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
   '''
-  CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
   '''
   @TODO: Use the after_request decorator to set Access-Control-Allow
   '''
-  @app.after_request
-  def after_request(response):
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    return response
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,true')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response
   '''
   @TODO: 
   Create an endpoint to handle GET requests 
   for all available categories.
   '''
-  @app.route('/categories', methods=['GET'])
-  def get_categories():
+@app.route('/categories', methods=['GET'])
+def get_categories():
 
-    categories = Category.query.all()
+  categories = Category.query.all()
 
-    return jsonify({
-      'success': True,
-      'id': categories.id,
-      'type': categories.type
-    })
+  return jsonify({
+    'success': True,
+    'id': categories.id,
+    'type': categories.type
+  })
 
   '''
   @TODO: 
@@ -53,32 +53,32 @@ def create_app(test_config=None):
   ten questions per page and pagination at the bottom of the screen for three pages.
   Clicking on the page numbers should update the questions. 
   '''
-  @app.route('/questions', methods=['GET'])
-  def get_questions():
+@app.route('/questions', methods=['GET'])
+def get_questions():
 
-    questions = Question.query.all()
+  questions = Question.query.all()
 
-    categories = Category.query.all()
+  categories = Category.query.all()
 
-    all_categories = {}
+  all_categories = {}
 
-    for category in categories:
-      categories += {'id': category.id, 'type': category.type}
+  for category in categories:
+    categories += {'id': category.id, 'type': category.type}
 
-    page = request.args.get('page', 1, type=int)
-    start = (page - 1) * QUESTIONS_PER_PAGE
-    end = start + QUESTIONS_PER_PAGE
+  page = request.args.get('page', 1, type=int)
+  start = (page - 1) * QUESTIONS_PER_PAGE
+  end = start + QUESTIONS_PER_PAGE
 
-    formatted_questions = [question.format() for question in  questions]
-    current_questions = formatted_questions[start:end]
+  formatted_questions = [question.format() for question in  questions]
+  current_questions = formatted_questions[start:end]
 
-    return jsonify({
-      'success': True,
-      'questions': current_questions,
-      'total_questions': len(formatted_questions),
-      'categories': categories,
-      'current_category': ''
-    })
+  return jsonify({
+    'success': True,
+    'questions': current_questions,
+    'total_questions': len(formatted_questions),
+    'categories': categories,
+    'current_category': ''
+  })
 
   '''
   @TODO: 
@@ -118,20 +118,20 @@ def create_app(test_config=None):
   categories in the left column will cause only questions of that 
   category to be shown. 
   '''
-  @app.route('/categories/<int:category_id>/questions')
-  def questions_by_category(category_id):
+@app.route('/categories/<int:category_id>/questions')
+def questions_by_category(category_id):
 
-    questions = Question.query.filter(Question.category == str(category_id)).all()
+  questions = Question.query.filter(Question.category == str(category_id)).all()
 
-    formatted_questions = [question.format() for question in questions]
-    total_questions - len(formatted_questions)
+  formatted_questions = [question.format() for question in questions]
+  total_questions - len(formatted_questions)
 
-    return jsonify({
-      'success': True,
-      'questions': formatted_questions,
-      'total_questions': total_questions,
-      'current_category': category_id
-    })
+  return jsonify({
+    'success': True,
+    'questions': formatted_questions,
+    'total_questions': total_questions,
+    'current_category': category_id
+  })
 
   '''
   @TODO: 
@@ -145,30 +145,30 @@ def create_app(test_config=None):
   and shown whether they were correct or not. 
   '''
 
-  @app.route('/quizzes', methods=['POST'])
-  def quizzes():
+@app.route('/quizzes', methods=['POST'])
+def quizzes():
 
-    previous_questions = body.get('previous_questions', None)
-    quiz_category = body.get('quiz_category', None)
+  previous_questions = body.get('previous_questions', None)
+  quiz_category = body.get('quiz_category', None)
 
-    questions = Question.query.filter(Question.category == quiz_category)\
+  questions = Question.query.filter(Question.category == quiz_category)\
     
-    formatted_questions = [question.format() for question in questions]
-    filtered_questions = []
+  formatted_questions = [question.format() for question in questions]
+  filtered_questions = []
 
-    for question in formatted_questions:
-      for previous_question in previous_questions:
-        if previous_question == question.id:
-          print('question ' + question.id + ' filtered')
-        else:
-          filtered_questions += question
+  for question in formatted_questions:
+    for previous_question in previous_questions:
+      if previous_question == question.id:
+        print('question ' + question.id + ' filtered')
+      else:
+        filtered_questions += question
           
-      returned_question = random.choice(filtered_questions)
+  returned_question = random.choice(filtered_questions)
 
-      return jsonify({
-        'success': True,
-        'question': returned_question.id
-      })
+    return jsonify({
+      'success': True,
+      'question': returned_question.id
+    })
 
   '''
   @TODO: 
