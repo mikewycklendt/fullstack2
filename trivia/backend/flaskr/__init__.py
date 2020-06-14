@@ -33,8 +33,8 @@ for all available categories.
 @app.route('/categories', methods=['GET'])
 def get_categories():
 
-  categories = Category.query.all()
-  categories_formatted = [category.format() for category in categories]
+  categories = Category.query.order_by(Category.type)all()
+  categories_formatted = {category.format() for category in categories}
 
   return jsonify({
     'success': True,
