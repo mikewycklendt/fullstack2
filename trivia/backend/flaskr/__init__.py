@@ -60,7 +60,7 @@ def get_questions():
 
   categories = Category.query.all()
 
-  formatted_categories = [category.format() for category in categories]
+  #formatted_categories = [category.format() for category in categories]
 
   print(formatted_categories)
 
@@ -68,14 +68,16 @@ def get_questions():
   start = (page - 1) * QUESTIONS_PER_PAGE
   end = start + QUESTIONS_PER_PAGE
 
-  formatted_questions = {question.format() for question in  questions}
+  formatted_questions = [question.format() for question in  questions]
   current_questions = formatted_questions[start:end]
+
+  print(current_questions)
 
   return jsonify({
     'success': True,
     'questions': current_questions,
     'total_questions': len(formatted_questions),
-    'categories': formatted_categories,
+    'categories': {category.id: category.type for category in categories},
     'current_category': ''
   })
 
