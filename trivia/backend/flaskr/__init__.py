@@ -33,7 +33,7 @@ for all available categories.
 @app.route('/categories', methods=['GET'])
 def get_categories():
 
-  categories = Category.query.order_by(Category.type)all()
+  categories = Category.query.order_by(Category.type).all()
   categories_formatted = {category.format() for category in categories}
 
   return jsonify({
@@ -68,7 +68,7 @@ def get_questions():
   start = (page - 1) * QUESTIONS_PER_PAGE
   end = start + QUESTIONS_PER_PAGE
 
-  formatted_questions = [question.format() for question in  questions]
+  formatted_questions = {question.format() for question in  questions}
   current_questions = formatted_questions[start:end]
 
   return jsonify({
