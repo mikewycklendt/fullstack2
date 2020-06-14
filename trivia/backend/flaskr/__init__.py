@@ -60,7 +60,7 @@ def get_questions():
 
   categories = Category.query.all()
 
-  #formatted_categories = [category.format() for category in categories]
+  formatted_categories = [category.format() for category in categories]
 
   print(formatted_categories)
 
