@@ -149,8 +149,9 @@ def questions_by_category(category_id):
 @app.route('/quizzes', methods=['POST'])
 def quizzes():
 
-  previous_questions = body.get('previous_questions', None)
-  quiz_category = body.get('quiz_category', None)
+  body = request.get_json()
+  previous_questions = body['previous_questions', None]
+  quiz_category = body.get['quiz_category', None]
 
   questions = Question.query.filter(Question.category == quiz_category)\
     
