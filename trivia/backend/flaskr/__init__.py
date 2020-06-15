@@ -150,7 +150,6 @@ def questions_by_category(category_id):
 def quizzes():
 
   body = request.get_json()
-  print(body)
   previous_questions = body['previous_questions']
   quiz_category = body['quiz_category']
   print(quiz_category)
@@ -163,14 +162,10 @@ def quizzes():
   filtered_questions = []
 
   if previous_questions != []:
-    for formatted_question in formatted_questions:
+    for question in formatted_questions:
       for previous_question in previous_questions:
-        if previous_question == formatted_question['id']:
-          print('question filtered')
-        else:
-          filtered_questions += formatted_question
-    returned_question = random.choice(filtered_questions)
-    print(returned_question)
+        if previous_question == question.id:
+          print('question added')
   else:
     returned_question = random.choice(formatted_questions)
 
