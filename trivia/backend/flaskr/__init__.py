@@ -170,8 +170,11 @@ def quizzes():
         else:
           filtered_questions += formatted_question
     returned_question = random.choice(filtered_questions)
+    print(returned_question)
   else:
     returned_question = random.choice(formatted_questions)
+
+  print()
 
 
   return jsonify({
