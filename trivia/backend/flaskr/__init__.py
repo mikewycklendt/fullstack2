@@ -162,7 +162,7 @@ def quizzes():
 
   for question in formatted_questions:
     for previous_question in previous_questions:
-      if previous_question == question.id:
+      if previous_question.id == question.id:
         print('question ' + question.id + ' filtered')
       else:
         filtered_questions += question
