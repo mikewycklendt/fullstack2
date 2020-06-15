@@ -163,10 +163,10 @@ def quizzes():
   filtered_questions = []
 
   if previous_questions != []:
-    for question in formatted_questions:
+    for formatted_question in formatted_questions:
       for previous_question in previous_questions:
-        if previous_question == question['id']:
-          print('question ' + str(question.id) + ' filtered')
+        if previous_question == formatted_question.id:
+          print('question ' + formatted_question.id + ' filtered')
         else:
           filtered_questions += question
     returned_question = random.choice(filtered_questions)
