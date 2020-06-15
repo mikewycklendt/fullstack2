@@ -150,8 +150,8 @@ def questions_by_category(category_id):
 def quizzes():
 
   body = request.get_json()
-  previous_questions = body['previous_questions', None]
-  quiz_category = body.get['quiz_category', None]
+  previous_questions = body.previous_questions
+  quiz_category = body.quiz_category
 
   questions = Question.query.filter(Question.category == quiz_category)\
     
