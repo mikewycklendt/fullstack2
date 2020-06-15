@@ -125,7 +125,7 @@ def questions_by_category(category_id):
   questions = Question.query.filter(Question.category == str(category_id)).all()
 
   formatted_questions = [question.format() for question in questions]
-  total_questions - len(formatted_questions)
+  total_questions = len(formatted_questions)
 
   return jsonify({
     'success': True,
