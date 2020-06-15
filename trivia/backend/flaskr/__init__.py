@@ -159,20 +159,15 @@ def quizzes():
   formatted_questions = [question.format() for question in questions]
 
   print(formatted_questions)
-  filtered_questions = []
 
   if previous_questions != []:
     for question in formatted_questions:
       for previous_question in previous_questions:
         if previous_question == question['id']:
-          print('question added')
+          print('question ' + str(previous question) + ' removed')
           formatted_questions.remove(question)
 
-  
-    returned_question = random.choice(formatted_questions)
-
-  print()
-
+  returned_question = random.choice(formatted_questions)
 
   return jsonify({
     'success': True,
