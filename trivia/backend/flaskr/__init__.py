@@ -160,7 +160,7 @@ def quizzes():
   formatted_questions = [question.format() for question in questions]
   filtered_questions = []
 
-  if previous_questions != []
+  if previous_questions != []:
     for question in formatted_questions:
       for previous_question in previous_questions:
         if previous_question.id == question.id:
