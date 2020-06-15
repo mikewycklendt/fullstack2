@@ -154,7 +154,7 @@ def quizzes():
   previous_questions = body['previous_questions']
   quiz_category = body['quiz_category']
   print(quiz_category)
-
+  print(previous_questions)
   questions = Question.query.filter(Question.category == quiz_category['id'])
     
   formatted_questions = [question.format() for question in questions]
@@ -166,7 +166,7 @@ def quizzes():
         print('question ' + question.id + ' filtered')
       else:
         filtered_questions += question
-          
+  
   returned_question = random.choice(filtered_questions)
 
   return jsonify({
