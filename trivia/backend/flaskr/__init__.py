@@ -158,6 +158,8 @@ def quizzes():
   questions = Question.query.filter(Question.category == quiz_category['id'])
     
   formatted_questions = [question.format() for question in questions]
+
+  print(formatted_questions)
   filtered_questions = []
 
   if previous_questions != []:
@@ -174,7 +176,7 @@ def quizzes():
 
   return jsonify({
     'success': True,
-    'question': returned_question.id
+    'question': returned_question
   })
 
   '''
