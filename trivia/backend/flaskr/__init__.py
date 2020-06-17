@@ -108,12 +108,11 @@ def add_question():
   difficulty = body['difficulty']
   category = body['category']
 
-  try:
-    addQuestion = Question(question=question, answer=answer, difficulty=difficulty, category=category)
-    session.add(addQuestion)
-    session.commit()
-  except:
-    abort(422)
+  #try:
+  addQuestion = Question(question=question, answer=answer, difficulty=difficulty, category=category)
+  addQuestion.insert()
+  #except:
+  #  abort(422)
 
 
   '''
