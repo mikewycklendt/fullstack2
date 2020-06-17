@@ -155,7 +155,7 @@ def quizzes():
   quiz_category = body['quiz_category']
   print(quiz_category)
   print(previous_questions)
-  if quiz_category = 0:
+  if quiz_category['id'] == 0:
     questions = Question.query.all()
   else:
     questions = Question.query.filter(Question.category == quiz_category['id'])
