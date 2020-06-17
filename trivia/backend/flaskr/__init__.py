@@ -109,7 +109,7 @@ def add_question():
 
   try:
     addQuestion = Question(question=question, answer=answer, difficulty=difficulty, category=category)
-	  addQuestion.insert()
+    addQuestion.insert()
   except:
     abort(422)
 
