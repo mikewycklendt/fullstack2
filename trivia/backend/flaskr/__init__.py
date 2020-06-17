@@ -150,6 +150,7 @@ def questions_by_category(category_id):
 def quizzes():
 
   body = request.get_json()
+  print(body)
   previous_questions = body['previous_questions']
   quiz_category = body['quiz_category']
   print(quiz_category)
