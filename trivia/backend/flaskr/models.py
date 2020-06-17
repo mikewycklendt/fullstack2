@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import Column, String, Integer, create_engine, Serial
+from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
@@ -26,7 +26,7 @@ Question
 class Question(db.Model):  
   __tablename__ = 'questions'
 
-  id = Column(Serial, primary_key=True)
+  id = Column(Integer, primary_key=True, autoincrement=True)
   question = Column(String)
   answer = Column(String)
   category = Column(String)
