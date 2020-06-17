@@ -26,7 +26,7 @@ Question
 class Question(db.Model):  
   __tablename__ = 'questions'
 
-  id = Column(Integer, primary_key=True)
+  id = Column(serial, primary_key=True)
   question = Column(String)
   answer = Column(String)
   category = Column(String)
