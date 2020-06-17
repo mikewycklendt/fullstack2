@@ -155,7 +155,10 @@ def quizzes():
   quiz_category = body['quiz_category']
   print(quiz_category)
   print(previous_questions)
-  questions = Question.query.filter(Question.category == quiz_category['id'])
+  if quiz_category == 0:
+    questions = Question.query.all()
+  else:
+    questions = Question.query.filter(Question.category == quiz_category['id'])
     
   formatted_questions = [question.format() for question in questions]
 
