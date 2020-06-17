@@ -102,6 +102,7 @@ def get_questions():
 @app.route('/questions', methods=['POST'])
 def add_question():
   body = request.get_json()
+  print(body)
   question = body['question']
   answer = body['answer']
   difficulty = body['difficulty']
@@ -109,7 +110,8 @@ def add_question():
 
   try:
     addQuestion = Question(question=question, answer=answer, difficulty=difficulty, category=category)
-    addQuestion.insert()
+    session.add(addQuestion)
+    session.commit()
   except:
     abort(422)
 
