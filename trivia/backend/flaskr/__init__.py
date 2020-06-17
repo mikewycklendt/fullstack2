@@ -92,7 +92,7 @@ def get_questions():
 @app.route('/questions/<int:id>', methods=['DELETE'])
 def delete_question(id):
   try:
-    question = Question.query.filter(Questionb.id==id).one_or_none()
+    question = Question.query.filter(Question.id==id).one_or_none()
     question.delete()
     return jsonify({'success': True})
   except:
