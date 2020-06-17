@@ -99,6 +99,20 @@ def get_questions():
   the form will clear and the question will appear at the end of the last page
   of the questions list in the "List" tab.  
   '''
+@app.route('/questions', methods=['POST'])
+def add_question():
+  body = request.get_json()
+  question = body['question']
+  answer = body['answer']
+  difficulty = body['difficulty']
+  category = body['category']
+
+  try:
+    addQuestion = Question(question=question, answer=answer, difficulty=difficulty, category=category)
+	  addQuestion.insert()
+  except:
+    abort(422)
+
 
   '''
   @TODO: 
@@ -111,14 +125,6 @@ def get_questions():
   Try using the word "title" to start. 
   '''
 
-  '''
-  @TODO: 
-  Create a GET endpoint to get questions based on category. 
-
-  TEST: In the "List" tab / main screen, clicking on one of the 
-  categories in the left column will cause only questions of that 
-  category to be shown. 
-  '''
 @app.route('/categories/<int:category_id>/questions')
 def questions_by_category(category_id):
 
@@ -133,18 +139,6 @@ def questions_by_category(category_id):
     'total_questions': total_questions,
     'current_category': category_id
   })
-
-  '''
-  @TODO: 
-  Create a POST endpoint to get questions to play the quiz. 
-  This endpoint should take category and previous question parameters 
-  and return a random questions within the given category, 
-  if provided, and that is not one of the previous questions. 
-
-  TEST: In the "Play" tab, after a user selects "All" or a category,
-  one question at a time is displayed, the user is allowed to answer
-  and shown whether they were correct or not. 
-  '''
 
 @app.route('/quizzes', methods=['POST'])
 def quizzes():
