@@ -89,16 +89,15 @@ def get_questions():
   This removal will persist in the database and when you refresh the page. 
   '''
 
-  '''
-  @TODO: 
-  Create an endpoint to POST a new question, 
-  which will require the question and answer text, 
-  category, and difficulty score.
+@app.route('/questions/<int:id>', methods=['DELETE'])
+def delete_question(id):
+  try:
+    question = Question.query.filter(Questionb.id==id).one_or_none()
+    question.delete()
+    return jsonify({'success': True})
+  except:
+    abort(422)
 
-  TEST: When you submit a question on the "Add" tab, 
-  the form will clear and the question will appear at the end of the last page
-  of the questions list in the "List" tab.  
-  '''
 @app.route('/questions', methods=['POST'])
 def add_question():
   body = request.get_json()
