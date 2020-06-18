@@ -81,14 +81,6 @@ def get_questions():
     'current_category': ''
   })
 
-  '''
-  @TODO: 
-  Create an endpoint to DELETE question using a question ID. 
-
-  TEST: When you click the trash icon next to a question, the question will be removed.
-  This removal will persist in the database and when you refresh the page. 
-  '''
-
 @app.route('/questions/<int:id>', methods=['DELETE'])
 def delete_question(id):
   try:
@@ -106,11 +98,25 @@ def add_question():
   answer = body['answer']
   difficulty = body['difficulty']
   category = body['category']
+  search = body['searchTerm']
 
   try:
-    addQuestion = Question(question=question, answer=answer, difficulty=difficulty, category=category)
-    addQuestion.insert()
-    return jsonify({'success': True})
+    if search:
+      results = Question.query.order_by(Question.question).filter(Question.question.ilike('%{}%'.format(search)))
+      questions = [result.format() for result in results]
+      totalQuestions = len(questions)
+
+      return jsonify({
+        'success': True,
+        'questions': questions,
+        'totalQuestions': totalQuestions,
+        'currentCategory': ''
+      })
+    else:
+      addQuestion = Question(question=question, answer=answer, difficulty=difficulty, category=category)
+      addQuestion.insert()
+      return jsonify({'success': True})
+
   except:
     abort(422)
 
@@ -125,6 +131,8 @@ def add_question():
   only question that include that string within their question. 
   Try using the word "title" to start. 
   '''
+
+
 
 @app.route('/categories/<int:category_id>/questions')
 def questions_by_category(category_id):
