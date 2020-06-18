@@ -94,11 +94,11 @@ def delete_question(id):
 def add_question():
   body = request.get_json()
   print(body)
-  question = body['question']
-  answer = body['answer']
-  difficulty = body['difficulty']
-  category = body['category']
-  search = body['searchTerm']
+  question = body.get('question', None)
+  answer = body.get('answer', None)
+  difficulty = body.get('difficulty', None)
+  category = body.get('category', None)
+  search = body.get('searchTerm', None)
 
   try:
     if search:
