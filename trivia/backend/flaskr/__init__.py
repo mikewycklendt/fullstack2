@@ -119,34 +119,37 @@ def questions_by_category(category_id):
 
 @app.route('/quizzes', methods=['POST'])
 def quizzes():
-  #try:
-  body = request.get_json()
-  previous_questions = body['previous_questions']
-  quiz_category = body['quiz_category']
+  try:
+    body = request.get_json()
+    previous_questions = body['previous_questions']
+    quiz_category = body['quiz_category']
 
-  if quiz_category['id'] == 0:
-    questions = Question.query.all()
-  else:
-    questions = Question.query.filter(Question.category == quiz_category['id'])
+    if quiz_category['id'] == 0:
+      questions = Question.query.all()
+    else:
+      questions = Question.query.filter(Question.category == quiz_category['id'])
     
-  formatted_questions = [question.format() for question in questions]
+    formatted_questions = [question.format() for question in questions]
 
-  if previous_questions != []:
-    for question in formatted_questions:
-      for previous_question in previous_questions:
-        if previous_question == question['id']:
-          print('question ' + str(previous_question) + ' removed')
-          formatted_questions.remove(question)
+    if previous_questions != []:
+      for question in formatted_questions:
+        for previous_question in previous_questions:
+          if previous_question == question['id']:
+            print('question ' + str(previous_question) + ' removed')
+            formatted_questions.remove(question)
 
-  print(previous_questions)
-  print(formatted_questions)
 
-  return jsonify({
-    'success': True,
-    'question': returned_question
-  })
-  #except:
-  #  abort(400)
+    returned_question = random.choice(formatted_questions)
+
+    print(previous_questions)
+    print(formatted_questions)
+
+    return jsonify({
+      'success': True,
+      'question': returned_question
+    })
+  except:
+    abort(400)
   '''
   @TODO: 
   Create error handlers for all expected errors 
