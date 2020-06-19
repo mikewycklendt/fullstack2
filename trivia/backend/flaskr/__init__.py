@@ -143,7 +143,7 @@ def quizzes():
     if formatted_questions:
       returned_question = random.choice(formatted_questions)
     else:
-      returned_question = []
+      returned_question = ''
 
     print(previous_questions)
     print(formatted_questions)
