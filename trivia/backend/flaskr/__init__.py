@@ -138,7 +138,8 @@ def quizzes():
             print('question ' + str(previous_question) + ' removed')
             formatted_questions.remove(question)
 
-    returned_question = random.choice(formatted_questions)
+    print(previous_questions)
+    print(formatted_questions)
 
     return jsonify({
       'success': True,
