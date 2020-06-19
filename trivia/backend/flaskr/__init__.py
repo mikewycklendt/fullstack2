@@ -140,8 +140,10 @@ def quizzes():
             print('question ' + str(previous_question) + ' removed')
             formatted_questions.remove(question)
 
-
-    returned_question = random.choice(formatted_questions)
+    if formatted_questions:
+      returned_question = random.choice(formatted_questions)
+    else:
+      returned_question = []
 
     print(previous_questions)
     print(formatted_questions)
