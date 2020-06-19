@@ -131,9 +131,11 @@ def quizzes():
     
     formatted_questions = [question.format() for question in questions]
 
+
+
     if previous_questions != []:
-      for question in formatted_questions:
-        for previous_question in previous_questions:
+      for previous_question in previous_questions:
+        for question in formatted_questions:
           if previous_question == question['id']:
             print('question ' + str(previous_question) + ' removed')
             formatted_questions.remove(question)
