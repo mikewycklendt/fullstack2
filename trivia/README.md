@@ -1,44 +1,131 @@
 # Full Stack API Final Project
 
-## Full Stack Trivia
+## Endpoints
 
-Udacity is invested in creating bonding experiences for its employees and students. A bunch of team members got the idea to hold trivia on a regular basis and created a  webpage to manage the trivia app and play the game, but their API experience is limited and still needs to be built out. 
+### /categories
 
-That's where you come in! Help them finish the trivia app so they can start holding trivia and seeing who's the most knowledgeable of the bunch. The application must:
+this endpoint returns all the categories for the various quizzes.  the response looks like this:
 
-1) Display questions - both all questions and by category. Questions should show the question, category and difficulty rating by default and can show/hide the answer. 
-2) Delete questions.
-3) Add questions and require that they include question and answer text.
-4) Search for questions based on a text query string.
-5) Play the quiz game, randomizing either all questions or within a specific category. 
+```
+{'success': True, 
+	'categories': {{'id': 1, 'type': 'Science'}, {'id': 2, 'type': 'Art'}}
+}
+```
 
-Completing this trivia app will give you the ability to structure plan, implement, and test an API - skills essential for enabling your future applications to communicate with others. 
+###  /questions
 
-## Tasks
+this endpoint takes a url argument /questions?page=1 and returns all categories for the given page.  the response looks like this:
 
-There are `TODO` comments throughout project. Start by reading the READMEs in:
+```
+{
+	'success': True,
+	'questions': [
+		{'id': 1,
+			'question': 'Whose autobiography is entitled 'I know Why the Caged Bird Sings'?',
+			'answer': 'Maya Angelous',
+			'category': 2,
+			'difficulty': 2}
+	]
+	'total_questions': 1,
+	'categories': {{'id': 1, 'type': 'Science'}, {'id': 2, 'type': 'Art'}},
+	'current_category': ''
+}
+```
 
-1. [`./frontend/`](./frontend/README.md)
-2. [`./backend/`](./backend/README.md)
+### /questions/1
 
-We recommend following the instructions in those files in order. This order will look familiar from our prior work in the course.
+this endpoint deletes a given question by using the question id in the route.  The response is:
 
-## Starting and Submitting the Project
+```
+{'success': True}
+```
 
-[Fork](https://help.github.com/en/articles/fork-a-repo) the [project repository]() and [Clone](https://help.github.com/en/articles/cloning-a-repository) your forked repository to your machine. Work on the project locally and make sure to push all your changes to the remote repository before submitting the link to your repository in the Classroom. 
+### /questions
 
-## About the Stack
+this endpoint posts a new question OR returns search results.  If it does not find 'searchTerm' in the object it receives it takes in this data and adds it to the database:
 
-We started the full stack application for you. It is desiged with some key functional areas:
+```
+{
+	'question': 'Who wrote Watchmen?',
+	'answer': 'Alan Moore',
+	'difficulty': 3,
+	'category': 2
+}
+```
 
-### Backend
+and returns:
 
-The `./backend` directory contains a partially completed Flask and SQLAlchemy server. You will work primarily in app.py to define your endpoints and can reference models.py for DB and SQLAlchemy setup. 
+```
+{
+	'success': True
+}
 
-### Frontend
+if the endpoint receives:
 
-The `./frontend` directory contains a complete React frontend to consume the data from the Flask server. You will need to update the endpoints after you define them in the backend. Those areas are marked with TODO and can be searched for expediency. 
+```
+{
+	'searchTerm': 'Caged Bird'
+}
+```
 
-Pay special attention to what data the frontend is expecting from each API response to help guide how you format your API. 
+it returns:
 
-[View the README.md within ./frontend for more details.](./frontend/README.md)
+```
+'success': True,
+'questions': [
+	{
+		'id': 1,
+		'question': 'Whose autobiography is entitled 'I know Why the Caged Bird Sings'?',
+		'answer': 'Maya Angelous',
+		'category': 2,
+		'difficulty': 2
+	}
+	]
+'totalQuestions': 1
+'currentCategory': ''
+```
+
+### /categories/1/questions
+
+this enpoint takes in the category id in the endpoint and returns the questions for the given category.  The response looks like this:
+
+```
+{'success': True,
+'questions': [
+	{
+		'id': 1,
+		'question': 'Whose autobiography is entitled 'I know Why the Caged Bird Sings'?',
+		'answer': 'Maya Angelous',
+		'category': 2,
+		'difficulty': 2
+	}
+]
+'total_questions': 1,
+'current_category': 2}
+```
+
+### /quizzes
+
+this endpoint takes in a json object that has the ids of the previous questions the user has answered and the category of questions they have chosen.  It looks like this:
+
+```
+{
+	'previous_questions': [],
+	'quiz_category': 2
+}
+```
+
+it returns a random question that it's id does not match one of the numbers in the previous_questions list.  The returned object looks like this:
+
+```
+{
+	'success': True,
+	'question': {
+		'id': 1,
+		'question': 'Whose autobiography is entitled 'I know Why the Caged Bird Sings'?',
+		'answer': 'Maya Angelous',
+		'category': 2,
+		'difficulty': 2
+	}
+}
+```

@@ -131,8 +131,6 @@ def quizzes():
     
     formatted_questions = [question.format() for question in questions]
 
-
-
     if previous_questions != []:
       for previous_question in previous_questions:
         for question in formatted_questions:
@@ -182,6 +180,14 @@ def unprocessable(error):
     'error': 422,
     'message': 'unprocessable'
   }), 422
+
+@app.errorhandler(405)
+def not_found(error):
+	return jsonify({
+		'success': False,
+		'error': 405,
+		'message': 'not found'
+	}), 405
 
 if __name__ == '__main__':
   app.debug = True
