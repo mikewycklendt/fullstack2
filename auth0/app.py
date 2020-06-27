@@ -128,7 +128,7 @@ def headers(payload):
     return 'Access Granted'
 
 @app.route('/callback')
-def callback()
+def callback():
     token = request.args.get('token')
     payload = jwt.decode(token)
     print(payload)
