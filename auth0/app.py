@@ -77,7 +77,7 @@ def verify_decode_jwt(token):
             }
     if rsa_key:
         try:
-            payload = jwt.decode(
+            payload = jwt.encode(
                 token,
                 rsa_key,
                 algorithms=ALGORITHMS,
@@ -130,10 +130,15 @@ def headers(payload):
 @app.route('/callback')
 def callback():
     token = request.args.get('access_token')
-    payload = jwt.decode(token)
-    print(payload)
-    return payload
+    verify_decode_jwt(token)
+    access_token = {'access_token': payload.decode('RS256')}
+    print(access_token)
+    return access_token
 
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=80)
+
+"""
+https://dcadventuresonline.us.auth0.com/authorize?audience=image&response_type=token&client_id=JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o&redirect_uri=https://dcadventuresonline.com/callback
+"""
