@@ -56,11 +56,12 @@ def get_token_auth_header():
 
 
 def verify_decode_jwt(token):
+    print(token)
     jsonurl = urlopen('https://dcadventuresonline.us.auth0.com/.well-known/jwks.json')
     jwks = jsonurl.read()
     unverified_header = jwt.get_unverified_header(token)
     rsa_key = {}
-    if 'kid' not in jwks:
+    if 'kid' not in unverified_header:
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Authorization malformed.'
