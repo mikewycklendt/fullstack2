@@ -127,6 +127,13 @@ def headers(payload):
     print(payload)
     return 'Access Granted'
 
+@app.route('/callback')
+def callback()
+    token = request.args.get('token')
+    payload = jwt.decode(token)
+    print(payload)
+    return payload
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=80)
