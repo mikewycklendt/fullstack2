@@ -131,7 +131,7 @@ def headers(payload):
 @app.route('/callback')
 def callback():
     token = request.args.get('access_token')
-    print(token)\
+    print(token)
     return token
     #verify_decode_jwt(token)
     #access_token = {'access_token': payload.decode('RS256')}
