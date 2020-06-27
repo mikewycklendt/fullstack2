@@ -131,10 +131,11 @@ def headers(payload):
 @app.route('/callback')
 def callback():
     token = request.args.get('access_token')
-    verify_decode_jwt(token)
-    access_token = {'access_token': payload.decode('RS256')}
-    print(access_token)
-    return access_token
+    print(token)
+    #verify_decode_jwt(token)
+    #access_token = {'access_token': payload.decode('RS256')}
+    #print(access_token)
+    #return access_token
 
 if __name__ == '__main__':
     app.debug = True
