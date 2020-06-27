@@ -129,7 +129,7 @@ def headers(payload):
 
 @app.route('/callback')
 def callback():
-    token = request.args.get('token')
+    token = request.args.get('access_token')
     payload = jwt.decode(token)
     print(payload)
     return payload
