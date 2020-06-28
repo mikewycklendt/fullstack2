@@ -153,10 +153,9 @@ def get_token():
                 'client_id':'JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o',
                 'client_secret':'aSEqerZw31L19r9QzdcbrLBIVY3i2WD3U6Cd2kBwY0MIKWJrlMNny6A7nySzlSS1',
                 'audience':'image'
-                }
-    headers = { 'content-type': "application/x-www-form-urlencoded" }
+                },{ 'content-type': "application/x-www-form-urlencoded" }
 
-    conn.request("POST", "https://dcadventuresonline.us.auth0.com/oauth/token", data=payload, headers)
+    conn.request("POST", "https://dcadventuresonline.us.auth0.com/oauth/token", data=payload)
 
     res = conn.getresponse()
     data = res.read()
