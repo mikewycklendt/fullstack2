@@ -4,6 +4,7 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 from splinter import browser
+from openerp import http
 import requests
 
 app = Flask(__name__)
@@ -133,7 +134,7 @@ def headers(payload):
 
 @app.route('/callback')
 def callback():
-    token_url = request.url
+    token_url = http.request.httprequest.full_path
     #token_split = token_url.split('#')
     #token = token_split[1]
     print(token_url)
