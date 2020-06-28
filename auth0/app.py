@@ -155,7 +155,7 @@ def get_token():
                 'audience': 'image'}
     headers = { 'content-type': "application/x-www-form-urlencoded" }
 
-    conn.request("POST", "dcadventuresonline.us.auth0.com/oauth/token", payload, headers)
+    conn.request("POST", "https://dcadventuresonline.us.auth0.com/oauth/token", payload, headers)
 
     res = conn.getresponse()
     data = res.read()
