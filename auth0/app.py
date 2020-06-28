@@ -149,8 +149,10 @@ def callback():
 def get_token():
     conn = http.client.HTTPSConnection("")
 
-    payload = "grant_type=client_credentials&client_id=JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o&client_secret=aSEqerZw31L19r9QzdcbrLBIVY3i2WD3U6Cd2kBwY0MIKWJrlMNny6A7nySzlSS1&audience=image"
-
+    payload = {'grant_type': 'client_credentials',
+                'client_id': 'JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o',
+                'client_secret': 'aSEqerZw31L19r9QzdcbrLBIVY3i2WD3U6Cd2kBwY0MIKWJrlMNny6A7nySzlSS1',
+                'audience': 'image'}
     headers = { 'content-type': "application/x-www-form-urlencoded" }
 
     conn.request("POST", "dcadventuresonline.us.auth0.com/oauth/token", payload, headers)
