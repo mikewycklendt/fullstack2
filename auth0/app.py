@@ -6,6 +6,7 @@ from urllib.request import urlopen
 from splinter import browser
 from openerp import http
 import requests
+import os
 
 app = Flask(__name__)
 
@@ -134,7 +135,7 @@ def headers(payload):
 
 @app.route('/callback')
 def callback():
-    token_url = http.request.httprequest.full_path
+    token_url = os.environ['REQUEST_URI']
     #token_split = token_url.split('#')
     #token = token_split[1]
     print(token_url)
