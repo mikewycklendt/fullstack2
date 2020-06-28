@@ -149,7 +149,7 @@ def callback():
 def get_token():
     conn = http.client.HTTPSConnection("")
 
-    payload = "grant_type=client_credentials&client_id=%24%7Baccount.clientId%7D&client_secret=YOUR_CLIENT_SECRET&audience=YOUR_API_IDENTIFIER"
+    payload = "grant_type=client_credentials&client_id=JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o&client_secret=YOUR_CLIENT_SECRET&audience=YOUR_API_IDENTIFIER"
 
     headers = { 'content-type': "application/x-www-form-urlencoded" }
 
