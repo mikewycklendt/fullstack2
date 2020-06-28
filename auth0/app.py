@@ -4,7 +4,6 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 from splinter import browser
-from openerp import http
 import requests
 import os
 
