@@ -6,6 +6,7 @@ from urllib.request import urlopen
 from splinter import browser
 import requests
 import os
+import http.client
 
 app = Flask(__name__)
 
@@ -144,10 +145,29 @@ def callback():
     #print(access_token)
     #return access_token
 
+@app.route('/login', methods=['POST'])
+def get_token():
+    conn = http.client.HTTPSConnection("")
+    payload = "grant_type=client_credentials&client_id=JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o&client_secret=aSEqerZw31L19r9QzdcbrLBIVY3i2WD3U6Cd2kBwY0MIKWJrlMNny6A7nySzlSS1&audience=image"
+
+    headers = { 'content-type': "application/x-www-form-urlencoded" }
+
+    conn.request("POST", "/YOUR_DOMAIN/oauth/token", payload, headers)
+
+    res = conn.getresponse()
+    data = res.read()
+
+print(data.decode("utf-8"))
+return data
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=80)
 
 """
 https://dcadventuresonline.us.auth0.com/authorize?audience=image&response_type=token&client_id=JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o&redirect_uri=https://dcadventuresonline.com/callback
+"""
+"""
+https://dcadventuresonline.us.auth0.com/oauth/token?audience=image&grant_type=client_credentials&client_id=JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o&client_secret=aSEqerZw31L19r9QzdcbrLBIVY3i2WD3U6Cd2kBwY0MIKWJrlMNny6A7nySzlSS1
 """
