@@ -148,7 +148,7 @@ def callback():
 @app.route('/login')
 def get_token():
     conn = http.client.HTTPSConnection("")
-    payload = "grant_type=client_credentials&client_id=JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o&client_secret=aSEqerZw31L19r9QzdcbrLBIVY3i2WD3U6Cd2kBwY0MIKWJrlMNny6A7nySzlSS1"
+    payload = "audience=image&grant_type=client_credentials&client_id=YJXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o&client_secret=aSEqerZw31L19r9QzdcbrLBIVY3i2WD3U6Cd2kBwY0MIKWJrlMNny6A7nySzlSS1"
 
     headers = { 'content-type': "application/x-www-form-urlencoded" }
 
