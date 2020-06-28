@@ -3,6 +3,7 @@ import json
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
+from splinter import browser
 
 
 app = Flask(__name__)
@@ -49,7 +50,9 @@ def get_token_auth_header():
 
     token = parts[1]"""
 
-    token = request.args.get('token')
+    token_url = browser.url
+    token_split = token_url.split('#')
+    token = token_split[1]
     
     
     return token
@@ -130,7 +133,9 @@ def headers(payload):
 
 @app.route('/callback')
 def callback():
-    token = request.args.get('access_token')
+    token_url = browser.url
+    token_split = token_url.split('#')
+    token = token_split[1]
     print(token)
     return token
     #verify_decode_jwt(token)
