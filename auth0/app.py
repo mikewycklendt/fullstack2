@@ -133,11 +133,11 @@ def headers(payload):
 
 @app.route('/callback')
 def callback():
-    token_url = browser.url
-    token_split = token_url.split('#')
-    token = token_split[1]
-    print(token)
-    return token
+    token_url = request.META.get('PATH_INFO')
+    #token_split = token_url.split('#')
+    #token = token_split[1]
+    print(token_url)
+    return token_url
     #verify_decode_jwt(token)
     #access_token = {'access_token': payload.decode('RS256')}
     #print(access_token)
