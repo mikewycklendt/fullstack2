@@ -157,8 +157,8 @@ def get_token():
     res = conn.getresponse()
     data = res.read()
 
-print(data.decode("utf-8"))
-return data
+    print(data.decode("RS256"))
+    return data
 
 
 if __name__ == '__main__':
