@@ -133,7 +133,7 @@ def headers(payload):
 
 @app.route('/callback')
 def callback():
-    token_url = request.META.get('PATH_INFO')
+    token_url = request.get('PATH_INFO')
     #token_split = token_url.split('#')
     #token = token_split[1]
     print(token_url)
