@@ -135,7 +135,7 @@ def headers(payload):
 
 @app.route('/callback')
 def callback():
-    token_url = url_for('callback', _anchor='access_token')
+    token_url = request.rawurl
     #token_split = token_url.split('#')
     #token = token_split[1]
     print(token_url)
