@@ -4,7 +4,7 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 from splinter import browser
-
+import requests
 
 app = Flask(__name__)
 
