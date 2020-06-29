@@ -135,6 +135,19 @@ def callback():
     #token = token_split[1]
     #print(token_url)
     #return token_url
+    payload = {'grant_type':'client_credentials',
+                'client_id':'JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o',
+                'client_secret':'aSEqerZw31L19r9QzdcbrLBIVY3i2WD3U6Cd2kBwY0MIKWJrlMNny6A7nySzlSS1',
+                'audience':'image'
+                }
+    request_headers = { 'content-type': "application/x-www-form-urlencoded" }
+
+    url = "https://dcadventuresonline.us.auth0.com/oauth/token"
+
+    response = requests.post(url=url, headers=request_headers, data=payload)
+    print(response.json())
+    data = response.json()
+    token = data['access_token']
     verify_decode_jwt(token)
     #access_token = {'access_token': payload.decode('RS256')}
     #print(access_token)
@@ -161,7 +174,7 @@ def get_token():
     verify_decode_jwt(token)
     access_token = {'access_token': payload.decode('RS256')}
     print(access_token)
-    return access_token
+    
 
     #print(data)
     #return(data)
