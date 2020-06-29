@@ -59,7 +59,7 @@ def verify_decode_jwt(token):
     print(token)
     jsonurl = urlopen('https://dcadventuresonline.us.auth0.com/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
-    unverified_header = jwk.decode(token)
+    unverified_header = token
     rsa_key = {}
     #if 'kid' not in unverified_header:
     #    raise AuthError({
@@ -151,6 +151,7 @@ def callback():
     verify_decode_jwt(token)
     #access_token = {'access_token': payload.decode('RS256')}
     #print(access_token)
+    print(payload)
     return payload
 
 @app.route('/login')
