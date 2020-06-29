@@ -58,14 +58,14 @@ def get_token_auth_header():
 def verify_decode_jwt(token):
     print(token)
     jsonurl = urlopen('https://dcadventuresonline.us.auth0.com/.well-known/jwks.json')
-    jwks = jsonurl.read()
-    unverified_header = jwt.get_unverified_header(token)
+    jwks = json.loads(jsonurl.read())
+    unverified_header = token
     rsa_key = {}
-    if 'kid' not in unverified_header:
-        raise AuthError({
-            'code': 'invalid_header',
-            'description': 'Authorization malformed.'
-        }, 401)
+    #if 'kid' not in unverified_header:
+    #    raise AuthError({
+    #        'code': 'invalid_header',
+    #        'description': 'Authorization malformed.'
+    #    }, 401)
 
     for key in jwks['keys']:
         if key['kid'] == unverified_header['kid']:
@@ -78,7 +78,7 @@ def verify_decode_jwt(token):
             }
     if rsa_key:
         try:
-            payload = jwt.encode(
+            payload = jwt.decode(
                 token,
                 rsa_key,
                 algorithms=ALGORITHMS,
@@ -136,9 +136,9 @@ def callback():
     #print(token_url)
     #return token_url
     verify_decode_jwt(token)
-    access_token = {'access_token': payload.decode('RS256')}
-    print(access_token)
-    return access_token
+    #access_token = {'access_token': payload.decode('RS256')}
+    #print(access_token)
+    return payload
 
 @app.route('/login')
 def get_token():
