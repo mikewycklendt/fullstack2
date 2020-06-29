@@ -58,7 +58,7 @@ def get_token_auth_header():
 def verify_decode_jwt(token):
     print(token)
     jsonurl = urlopen('https://dcadventuresonline.us.auth0.com/.well-known/jwks.json')
-    jwks_unencoded = json.loads(jsonurl.read())
+    jwks_unencoded = jsonurl.read()
     print(jwks_unencoded)
     jwks = jwt.decode(jwks_unencoded)
     print(jwks)
