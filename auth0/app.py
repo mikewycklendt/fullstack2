@@ -22,7 +22,7 @@ class AuthError(Exception):
 
 
 def get_token_auth_header():
-    """Obtains the Access Token from the Authorization Header
+    """Obtains the Access Token from the Authorization Header"""
     
     auth = request.headers.get('Authorization', None)
     if not auth:
@@ -50,12 +50,7 @@ def get_token_auth_header():
             'description': 'Authorization header must be bearer token.'
         }, 401)
 
-    token = parts[1]"""
-
-    token_url = browser.url
-    token_split = token_url.split('#')
-    token = token_split[1]
-    
+    token = parts[1]
     
     return token
 
