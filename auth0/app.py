@@ -130,15 +130,15 @@ def headers(payload):
 
 @app.route('/callback')
 def callback():
-    token_url = request.Rawurl
+    #token_url = request.Rawurl
     #token_split = token_url.split('#')
     #token = token_split[1]
-    print(token_url)
-    return token_url
-    #verify_decode_jwt(token)
-    #access_token = {'access_token': payload.decode('RS256')}
-    #print(access_token)
-    #return access_token
+    #print(token_url)
+    #return token_url
+    verify_decode_jwt(token)
+    access_token = {'access_token': payload.decode('RS256')}
+    print(access_token)
+    return access_token
 
 @app.route('/login')
 def get_token():
@@ -155,8 +155,15 @@ def get_token():
 
     response = requests.post(url=url, headers=request_headers, data=payload)
     data = response.json()
-    print(data)
-    return(data)
+    token = data.access_token
+
+    verify_decode_jwt(token)
+    access_token = {'access_token': payload.decode('RS256')}
+    print(access_token)
+    return access_token
+
+    #print(data)
+    #return(data)
 
 
     #conn.request("POST", "https://dcadventuresonline.us.auth0.com/oauth/token", payload, request_headers)
