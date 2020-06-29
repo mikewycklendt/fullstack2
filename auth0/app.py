@@ -156,7 +156,7 @@ def get_token():
     response = requests.post(url=url, headers=request_headers, data=payload)
     print(response.json())
     data = response.json()
-    token = data.access_token
+    token = data['access_token']
 
     verify_decode_jwt(token)
     access_token = {'access_token': payload.decode('RS256')}
