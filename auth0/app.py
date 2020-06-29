@@ -167,8 +167,8 @@ def get_token():
     #data = res.read()
 
 
-    print(data)
-    return data
+    #print(data)
+    #return data
 
 
 if __name__ == '__main__':
