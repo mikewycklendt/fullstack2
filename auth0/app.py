@@ -60,7 +60,6 @@ def verify_decode_jwt(token):
     jsonurl = urlopen('https://dcadventuresonline.us.auth0.com/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read().decode('utf-8'))
     print(jwks)
-    unverified_header = token
     rsa_key = {}
     #if 'kid' not in unverified_header:
     #    raise AuthError({
@@ -82,9 +81,9 @@ def verify_decode_jwt(token):
             payload = jwt.decode(
                 token,
                 rsa_key,
-                algorithms=ALGORITHMS,
-                audience=API_AUDIENCE,
-                issuer='https://' + AUTH0_DOMAIN + '/'
+                algorithms=['RS256']
+                audience='image',
+                issuer='https://dcadventuresonline.us.auth0.com/'
             )
 
             return payload
