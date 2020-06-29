@@ -159,7 +159,10 @@ def get_token():
     url = "https://dcadventuresonline.us.auth0.com/oauth/token"
 
     response = requests.post(url=url, headers=request_headers, data=payload)
-    return response.json()
+    data = response.jdon()
+    print(data)
+    return(data)
+
 
     #conn.request("POST", "https://dcadventuresonline.us.auth0.com/oauth/token", payload, request_headers)
 
