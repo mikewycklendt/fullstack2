@@ -170,10 +170,12 @@ def get_token():
     print(response.json())
     data = response.json()
     token = data['access_token']
-
-    verify_decode_jwt(token)
-    access_token = {'access_token': payload.decode('RS256')}
-    print(access_token)
+    decoded_token = jwt.decode(token)
+    print(decoded_token)
+    return decoded_token
+    #verify_decode_jwt(token)
+    #access_token = {'access_token': payload.decode('RS256')}
+    #print(access_token)
     
 
     #print(data)
