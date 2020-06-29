@@ -59,7 +59,7 @@ def verify_decode_jwt(token):
     print(token)
     jsonurl = urlopen('https://dcadventuresonline.us.auth0.com/.well-known/jwks.json')
     jwks_undecoded = jsonurl.read()
-    jwks = json.loads(jwks_undecoded.decode('utf-8'))
+    jwks = json.loads(jwks_undecoded)
     print(jwks)
     unverified_header = token
     rsa_key = {}
