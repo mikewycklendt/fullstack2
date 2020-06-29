@@ -154,6 +154,7 @@ def get_token():
     url = "https://dcadventuresonline.us.auth0.com/oauth/token"
 
     response = requests.post(url=url, headers=request_headers, data=payload)
+    print(response.json())
     data = response.json()
     token = data.access_token
 
