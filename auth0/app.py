@@ -58,8 +58,7 @@ def get_token_auth_header():
 def verify_decode_jwt(token):
     print(token)
     jsonurl = urlopen('https://dcadventuresonline.us.auth0.com/.well-known/jwks.json')
-    jwks_undecoded = jsonurl.read()
-    jwks = json.loads(jwks_undecoded)
+    jwks = json.loads(jsonurl.read())
     print(jwks)
     unverified_header = token
     rsa_key = {}
@@ -69,7 +68,7 @@ def verify_decode_jwt(token):
     #        'description': 'Authorization malformed.'
     #    }, 401)
 
-    for key in jwks['keys'].values():
+    for key in jwks['keys']:
         if key['kid'] == unverified_header['kid']:
             rsa_key = {
                 'kty': key['kty'],
