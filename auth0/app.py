@@ -147,7 +147,7 @@ def callback():
 
 @app.route('/login')
 def get_token():
-    conn = http.client.HTTPSConnection("")
+    #conn = http.client.HTTPSConnection("")
 
     payload = {'grant_type':'client_credentials',
                 'client_id':'JXHzBwF6DPiXU2fBjPe1Nd7bYPC6vZ0o',
@@ -156,10 +156,15 @@ def get_token():
                 }
     request_headers = { 'content-type': "application/x-www-form-urlencoded" }
 
-    conn.request("POST", "https://dcadventuresonline.us.auth0.com/oauth/token", payload, request_headers)
+    url = "https://dcadventuresonline.us.auth0.com/oauth/token"
 
-    res = conn.getresponse()
-    data = res.read()
+    response = requests.post(url=url, headers=request_headers, data=payload)
+    return response.json()
+
+    #conn.request("POST", "https://dcadventuresonline.us.auth0.com/oauth/token", payload, request_headers)
+
+    #res = conn.getresponse()
+    #data = res.read()
 
 
     print(data)
