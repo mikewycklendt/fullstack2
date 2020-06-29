@@ -79,7 +79,7 @@ def verify_decode_jwt(token):
     if rsa_key:
         try:
             payload = jwt.decode(
-                token=token,
+                token,
                 key=rsa_key,
                 algorithms=['RS256'],
                 audience='image',
