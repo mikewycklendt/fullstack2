@@ -68,7 +68,7 @@ def verify_decode_jwt(token):
     #        'description': 'Authorization malformed.'
     #    }, 401)
 
-    for key in jwks['keys']:
+    for key in jwks['keys'].items():
         if key['kid'] == unverified_header['kid']:
             rsa_key = {
                 'kty': key['kty'],
