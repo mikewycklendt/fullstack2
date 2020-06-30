@@ -84,7 +84,7 @@ def verify_decode_jwt(token):
                 algorithms=['RS256'],
                 audience='image',
                 issuer='https://dcadventuresonline.us.auth0.com/',
-                verify='-----BEGIN CERTIFICATE-----
+                verify="""-----BEGIN CERTIFICATE-----
 MIIDGTCCAgGgAwIBAgIJBX4hAZSVEupoMA0GCSqGSIb3DQEBCwUAMCoxKDAmBgNV
 BAMTH2RjYWR2ZW50dXJlc29ubGluZS51cy5hdXRoMC5jb20wHhcNMjAwNjIyMTYy
 MTAzWhcNMzQwMzAxMTYyMTAzWjAqMSgwJgYDVQQDEx9kY2FkdmVudHVyZXNvbmxp
@@ -102,7 +102,7 @@ r9Rvi5KN2B/BBjmcYVE78s83xgr2ngGstiEmeszxsHyIvz06+0IrCAUzq7Fi0kRw
 qWRzGrUU3Y9TYKRmoq6pTD1UXP7RtihK4BL3I0DhYYv/fHITtwemuXz/TYtE/s6a
 exyuu7z4xUjhWiqQvJTw2K1ItlB1UK3CFD1fbzCxEUFLA5ourJlaJQ1I/1rXjUWT
 6HtbxNyx3TvV6+u5s1ZM/y8hN+xpLfFA+QAWcss=
------END CERTIFICATE-----'
+-----END CERTIFICATE-----"""
             )
 
             return payload
