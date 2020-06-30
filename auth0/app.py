@@ -80,10 +80,29 @@ def verify_decode_jwt(token):
         try:
             payload = jwt.decode(
                 token,
-                key=rsa_key,
+                rsa_key,
                 algorithms=['RS256'],
                 audience='image',
-                issuer='https://dcadventuresonline.us.auth0.com/'
+                issuer='https://dcadventuresonline.us.auth0.com/',
+                verify='-----BEGIN CERTIFICATE-----
+MIIDGTCCAgGgAwIBAgIJBX4hAZSVEupoMA0GCSqGSIb3DQEBCwUAMCoxKDAmBgNV
+BAMTH2RjYWR2ZW50dXJlc29ubGluZS51cy5hdXRoMC5jb20wHhcNMjAwNjIyMTYy
+MTAzWhcNMzQwMzAxMTYyMTAzWjAqMSgwJgYDVQQDEx9kY2FkdmVudHVyZXNvbmxp
+bmUudXMuYXV0aDAuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+s3OYchfjFBg3CE2RGCUyToRFr0MpSvEvdGVFwOd+C2Lme1wDXo5lHOHH47e7ONgj
+jTvIZja/1L+Fk/CeemC3VRvX/turVFIURlk0MbU315nS1yMPz3CB7FONisjrntjE
++HrSj80HqWhvgIQyNFQoWbBc+2hU1j8oM4MtwPNSiYkCE4Q8Uk1RURSiF8jiKPP1
+61hJ0GUU2LraoQHEmF9Z7euDyKPUwpszx/YNsE3cInZDx7ABreTqM71ZHAATFPio
+z+oVKIp8f2MYJLLfY/2Os6dCqeevRX7ay0GCPpC7kwQUAO1ceA13u6Vl5dljushY
+xBh4kbFkuWwLNSqhpVl7KwIDAQABo0IwQDAPBgNVHRMBAf8EBTADAQH/MB0GA1Ud
+DgQWBBThbAc56UTKY+opdCI0oDEU+h39ZjAOBgNVHQ8BAf8EBAMCAoQwDQYJKoZI
+hvcNAQELBQADggEBAHHu9jWAexNHeSK2NBx85gv+EIynUAYaUE04UYzg9aEpUENC
+RRKem0EsoeVXwpICX8WPQ5rCZdSjusy2c8AD3wGfF/taY3pHrLPp16EYFjlydu5n
+r9Rvi5KN2B/BBjmcYVE78s83xgr2ngGstiEmeszxsHyIvz06+0IrCAUzq7Fi0kRw
+qWRzGrUU3Y9TYKRmoq6pTD1UXP7RtihK4BL3I0DhYYv/fHITtwemuXz/TYtE/s6a
+exyuu7z4xUjhWiqQvJTw2K1ItlB1UK3CFD1fbzCxEUFLA5ourJlaJQ1I/1rXjUWT
+6HtbxNyx3TvV6+u5s1ZM/y8hN+xpLfFA+QAWcss=
+-----END CERTIFICATE-----'
             )
 
             return payload
