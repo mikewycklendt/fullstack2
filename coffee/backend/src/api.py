@@ -108,3 +108,6 @@ def unprocessable(error):
 @TODO implement error handler for AuthError
     error handler should conform to general task above 
 '''
+if __name__ == '__main__':
+  app.debug = True
+  app.run(host='0.0.0.0', port=81)
