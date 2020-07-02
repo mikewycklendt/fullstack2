@@ -5,7 +5,7 @@ import json
 
 database_filename = "database.db"
 project_dir = os.path.dirname(os.path.abspath(__file__))
-database_path = "postgresql+psycopg2://postgres:postgres@3.134.26.61:5432/coffee"
+database_path = 'postgresql+psycopg2://postgres:postgres@3.134.26.61:5432/coffee'
 
 db = SQLAlchemy()
 
