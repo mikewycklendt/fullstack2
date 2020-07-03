@@ -9,6 +9,6 @@ export const environment = {
     url: 'dcadventuresonline.us.auth0.com', // the auth0 domain prefix
     audience: 'https://dcadventuresonline.com', // the audience set for the auth0 app
     clientId: 'p3kGaVETQ4TA3BibSj7UKPeSbS5bZ5I5', // the client id generated for the auth0 app
-    callbackURL: 'https://dcadventuresonline.com/', // the base url of the running ionic application. 
+    callbackURL: 'https://dcadventuresonline.com', // the base url of the running ionic application. 
   }
 };
