@@ -91,7 +91,7 @@ def check_permissions(permission, payload):
 def verify_decode_jwt(token):
     token = get_token_auth_header()
     jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
-    jwks = json.loads(jsonurl.read())
+    jwks = json.loads(jsonurl.read().decode('utf-8'))
     try:
         unverified_header = jwt.get_unverified_header(token)
     except jwt.JWTError:
