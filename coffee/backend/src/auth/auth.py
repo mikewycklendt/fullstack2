@@ -79,8 +79,8 @@ def check_permissions(permission, payload):
 '''
 def verify_decode_jwt(token):
     # GET THE PUBLIC KEY FROM AUTH0
-    jsonurl = urlopen(f'http://{AUTH0_DOMAIN}/.well-known/jwks.json')
-    jwks = json.loads(jsonurl.read())
+    jsonurl = urlopen('https://dcadventuresonline.us.auth0.com/.well-known/jwks.json')
+    jwks = json.loads(jsonurl.read().decode('utf-8'))
     # GET THE DATA IN THE HEADER
     unverified_header = jwt.get_unverified_header(token)
     # CHOOSE OUR KEY
