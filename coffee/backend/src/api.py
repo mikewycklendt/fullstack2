@@ -55,7 +55,7 @@ def drinks_short():
 
 @app.route('/drinks-detail')
 @requires_auth('get:drinks-detail')
-def drinks_long():
+def drinks_long(payload):
 
     try:
         drinks = Drink.query.all()
@@ -81,7 +81,7 @@ def drinks_long():
 
 @app.route('/drinks', methods=['POST'])
 @requires_auth('post:drinks')
-def add_drink():
+def add_drink(payload):
 
     try:
         body = request.get_json()
@@ -117,7 +117,7 @@ def add_drink():
 
 @app.route('/drinks/<int:id>', methods=['PATCH'])
 @requires_auth('patch:drinks')
-def edit_drink(id):
+def edit_drink(payload, id):
 
     try:
         body = request.get_json()
@@ -153,9 +153,9 @@ def edit_drink(id):
         or appropriate status code indicating reason for failure
 '''
 
-@app.route('/drinks/<int:id>')
+@app.route('/drinks/<int:id>', methods=['DELETE'])
 @requires_auth('delete:drinks')
-def delete_drink(id):
+def delete_drink(payload, id):
 
     try:
         drink = Drink.query.filter(Drink.id == id).one()
@@ -229,4 +229,4 @@ def handle_auth_error(ex):
 
 if __name__ == '__main__':
   app.debug = True
-  app.run(host='0.0.0.0', port=81)
+  app.run(host='0.0.0.0', port=5000)
