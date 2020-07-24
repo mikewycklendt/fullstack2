@@ -33,7 +33,7 @@ def drinks_short():
 
     try:
         drinks = Drink.query.all()
-        drinks_short = drinks.short()
+        drinks_short = [drinks.short() for drink in drinks]
 
         return jsonify({
             'status_code': 200,
@@ -59,7 +59,7 @@ def drinks_long(payload):
 
     try:
         drinks = Drink.query.all()
-        drinks_long = drinks.long()
+        drinks_long = [drinks.long() for drink in drinks]
 
         return jsonify({
             'status_code': 200,
@@ -88,7 +88,7 @@ def add_drink(payload):
         title = body['title']
         recipe = body['recipe']
 
-        drink = Drink(title=title, recipe=recipe)
+        drink = Drink(title=title, recipe=json.dumps(recipe))
         drink.insert()
 
         drink_formatted = drink.format()
@@ -129,7 +129,7 @@ def edit_drink(payload, id):
         drink.title = title
         drink.recipe = recipe
 
-        drink_formatted = drink.format()
+        drink_formatted = drink.long()
 
         return jsonify({
             'status_code': 200,
