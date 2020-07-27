@@ -2,7 +2,7 @@
 {% block title %}New Venue{% endblock %}
 {% block content %}
   <div class="form-wrapper">
-    <form action="/venues/create" method="POST" class="form">
+    <form action="/venues/create" method="post" class="form">
       <h3 class="form-heading">List a new venue <a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
       <div class="form-group">
         <label for="name">Name</label>
@@ -33,7 +33,6 @@
         {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.genres.id, autofocus = true) }}
       </div>
       <div class="form-group">
-        <label for="seeking_talent">Is Venue currently seeking talent?</label>
         {{ form.seeking_talent(class_ = 'form-control', id=form.seeking_talent.id, autofocus = true) }}
       </div>
       <div class="form-group">
@@ -47,55 +46,58 @@
       <div class="form-group">
           <label for="image_link">Image of Venue</label>
           {{ form.image_link(class_ = 'form-control', id=image_link, autofocus = true) }}
-      </div>
+        </div>
       <div class="form-group">
           <label for="website">Website</label>
           {{ form.website(class_ = 'form-control', id=website, placeholder='http://', autofocus = true) }}
-      </div>
+        </div>
       <input type="submit" value="Create Venue" class="btn btn-primary btn-lg btn-block">
     </form>
   </div>
 
   <script>
-//      const nameInput = document.getElementById('name');
-//      const cityInput = document.getElementById('city');
-//      const addressInput = document.getElementById('address');
-//      const phoneInput = document.getElementById('phone');
-//      const facebookInput = document.getElementById('facebook_link');
-//      const stateInput = document.getElementById('state');
-//      const genreInput = document.getElementById('genres');
-//      const seekingDescInput = document.getElementById('seeking_description');
-//      const imageInput = document.getElementById('image_link');
-//      const seekingInput = document.getElementById('seeking_talent');
-//      document.getElementById('form').onsubmit = function(e) {
-//        e.preventDefault();
-//        const name = nameInput.value;
-//        const city = cityInput.value;
-//        const address = addressInput.value;
-//        const phone = phoneInput.value;
-//        const facebook = facebookInput.value;
-//        const state = stateInput.value;
-//        const genres = genreInput.value;
-//        const seekingDesc = seekingDescInput.value;
-//        const image = imageInput.value;
-//        const seeking = seekingInput.value;
-//        fetch('/venues/create', {
-//          method: 'POST',
-//          body: JSON.stringify({
-//            'name': name, 
-//            'city': city, 
-//            'address': address, 
-//            'phone':phone, 
-//            'facebook': facebook, 
-//            'state': state, 
-//            'genres': genres,
-//            'seekingDesc': seekingDesc,
-//            'image': image,
-//            'seeking': seeking
-//          }),
-//          headers: {
-//            'Content-Type': 'application/json',
-//          }
-//        })
+      const nameInput = document.getElementById('name');
+      const cityInput = document.getElementById('city');
+      const addressInput = document.getElementById('address');
+      const phoneInput = document.getElementById('phone');
+      const facebookInput = document.getElementById('facebook_link');
+      const stateInput = document.getElementById('state');
+      const genreInput = document.getElementById('genres');
+      const seekingDescInput = document.getElementById('seeking_description');
+      const imageInput = document.getElementById('image_link');
+      const seekingInput = document.getElementById('seeking_talent');
+      document.getElementById('form').onsubmit = function(e) {
+        e.preventDefault();
+        const name = nameInput.value;
+        const city = cityInput.value;
+        const address = addressInput.value;
+        const phone = phoneInput.value;
+        const facebook = facebookInput.value;
+        const state = stateInput.value;
+        const genres = genreInput.value;
+        const seekingDesc = seekingDescInput.value;
+        const image = imageInput.value;
+        const seeking = seekingInput.value;
+        fetch('/venues/create', {
+          method: 'POST',
+          body: JSON.stringify({
+            'name': name, 
+            'city': city, 
+            'address': address, 
+            'phone':phone, 
+            'facebook': facebook, 
+            'state': state, 
+            'genres': genres,
+            'seekingDesc': seekingDesc,
+            'image': image,
+            'seeking': seeking
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+
+
+
   </script>
 {% endblock %}
