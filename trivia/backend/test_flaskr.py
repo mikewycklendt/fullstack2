@@ -105,12 +105,11 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
 
     def test_405_if_question_creation_not_allowed(self):
-		res = self.client().post('/questions/45', json=self.new_question)
-		data = json.loads(res.data)
-
-		self.assertEqual(res.status_code, 422)
-		self.assertEqual(data['success'], False)
-		self.assertEqual(data['message'], 'unprocessable')
+        res = self.client().post('/questions/45', json=self.new_question)
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 422)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'unprocessable')
 
     def test_get_questions_by_category(self):
         res = self.client().get('/categories/1/questions')
@@ -135,7 +134,7 @@ class TriviaTestCase(unittest.TestCase):
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['success'], True)\
+        self.assertEqual(data['success'], True)
         self.assertTrue(data['question'])
 
     def test_400_quiz_not_found(self):
